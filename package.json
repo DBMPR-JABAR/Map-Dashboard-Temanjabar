@@ -1,0 +1,37 @@
+{
+  "name": "map-dashboard-temanjabar",
+  "version": "1.0.0",
+  "description": "Map Dashboard TemanJabar",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "serve": "webpack serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/priyayidimas/map-dashboard-temanjabar.git"
+  },
+  "keywords": [
+    "map"
+  ],
+  "author": "Dimas Anom Priyayi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/priyayidimas/map-dashboard-temanjabar/issues"
+  },
+  "homepage": "https://gitlab.com/priyayidimas/map-dashboard-temanjabar#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^5.2.6",
+    "html-webpack-plugin": "^5.3.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
