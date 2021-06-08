@@ -7,10 +7,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: "Webpack Output"
     }),
-    new CleanWebpackPlugin()
   ],
   entry: {
-    main: path.resolve(__dirname, './src/app.js'),
+    main: path.resolve(__dirname, './src/index.js'),
   },
   output: {
     filename: '[name].bundle.js',
