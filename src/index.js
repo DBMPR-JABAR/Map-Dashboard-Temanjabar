@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from "./ui/components/App"
-import initUi from "./ui/initUi"
+import MapViewEsriLoader from './ui/components/MapViewEsriLoader'
+import MapViewHook from './ui/components/MapViewHook'
 
-initUi()
+const options = {
+    url: 'https://js.arcgis.com/4.19/'
+};
 
 ReactDOM.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+    <MapViewHook 
+        />,
     document.getElementById('root')
 )

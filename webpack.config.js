@@ -5,7 +5,7 @@ const path = require("path")
 module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Webpack Output"
+      template: 'public/index.html'
     }),
   ],
   entry: {
