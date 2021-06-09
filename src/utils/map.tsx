@@ -14,9 +14,6 @@ export const viewOptions = {
             breakpoint: false,
             position : "top-right"
         }
-    },
-    extent: {
-        spatialReference: 4326
     }
 }
 

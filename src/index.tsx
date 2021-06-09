@@ -1,6 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './ui/components/App'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 import EsriMap from './ui/components/EsriMap';
 
 const options = {
@@ -8,7 +7,6 @@ const options = {
 };
 
 ReactDOM.render(
-    <EsriMap 
-        />,
+    <EsriMap />,
     document.getElementById('root')
 )

@@ -14,7 +14,7 @@ module.exports = {
     new CleanWebpackPlugin()
   ],
   entry: {
-    main: path.resolve(__dirname, './src/index.js'),
+    main: path.resolve(__dirname, './src/index.tsx'),
   },
   output: {
     filename: '[name].bundle.js',
@@ -36,14 +36,12 @@ module.exports = {
           }
         }
       },
-      { 
-        test: /\.css$/, 
-        use: ["style-loader", "css-loader"] 
-      },
-      { 
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource',
-      },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource'},
+      { test: /\.tsx?$/, loader: 'ts-loader', exclude: '/node_modules/' },
     ]
   },
+  resolve: {
+    extensions: ['.ts', '.js', '.json', '.tsx']
+  }
 }
