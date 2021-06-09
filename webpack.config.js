@@ -1,12 +1,17 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const CleanWebpackPlugin = require("clean-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const path = require("path")
+const { env } = require("./env")
 
 module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'public/index.html'
+      template: 'public/index.html',
+      templateParameters: {
+        baseUrl: env.baseUrl
+      }
     }),
+    new CleanWebpackPlugin()
   ],
   entry: {
     main: path.resolve(__dirname, './src/index.js'),
