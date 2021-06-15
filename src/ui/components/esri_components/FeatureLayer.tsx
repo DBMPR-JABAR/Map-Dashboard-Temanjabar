@@ -1,12 +1,9 @@
 import  { useState, useEffect, FunctionComponent } from 'react';
 import { loadModules } from 'esri-loader';
 
-type FeatureLayerProps = {
-    featureLayerProperties: {
-        url: string
-    },
+export type FeatureLayerProps = {
+    featureLayerProperties: __esri.FeatureLayerProperties,
     map: __esri.Map | null
-
 }
 
 const FeatureLayer : FunctionComponent<FeatureLayerProps> = (props: FeatureLayerProps) => {
@@ -14,12 +11,11 @@ const FeatureLayer : FunctionComponent<FeatureLayerProps> = (props: FeatureLayer
     
     useEffect(() => {
         loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
-            const myFeatureLayer = new FeatureLayer({
-                url: props.featureLayerProperties.url
-            });
+            const myFeatureLayer = new FeatureLayer(
+                props.featureLayerProperties
+            );
 
             setMyFeatureLayer(myFeatureLayer);
-
             props.map?.add(myFeatureLayer);
 
         }).catch((err) => console.error(err));

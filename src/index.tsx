@@ -1,12 +1,12 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import EsriMap from './ui/components/EsriMap';
-
-const options = {
-    url: 'https://js.arcgis.com/4.19/'
-};
+import { store } from './app/store';
+import { Provider } from 'react-redux';
+import MapScene from './ui/components/MapScene';
 
 ReactDOM.render(
-    <EsriMap />,
+    <Provider store={store}>
+      <MapScene />
+    </Provider>,
     document.getElementById('root')
 )
