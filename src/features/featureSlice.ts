@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../app/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../app/store'
 import { mapOptions, mapViewOptions } from '../utils/map'
-import { jalanProvinsiConfig } from '../utils/map_config/jalan_provinsi';
+import { jalanProvinsiConfig } from '../utils/map_config/jalan_provinsi'
 
 export interface FeatureState {
     featureLayerProps: __esri.FeatureLayerProperties[]
@@ -9,7 +9,7 @@ export interface FeatureState {
   
 const initialState: FeatureState = {
     featureLayerProps : [
-        { url: 'https://tj.temanjabar.net/geoserver/gsr/services/temanjabar/FeatureServer/4/' },
+        {url: "https://tj.temanjabar.net/geoserver/gsr/services/temanjabar/FeatureServer/4/"}
     ]
 }
 

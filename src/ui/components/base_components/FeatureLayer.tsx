@@ -1,5 +1,5 @@
-import  { useState, useEffect, FunctionComponent } from 'react';
-import { loadModules } from 'esri-loader';
+import  { useState, useEffect, FunctionComponent } from 'react'
+import { loadModules } from 'esri-loader'
 
 export type FeatureLayerProps = {
     featureLayerProperties: __esri.FeatureLayerProperties,
@@ -7,25 +7,25 @@ export type FeatureLayerProps = {
 }
 
 const FeatureLayer : FunctionComponent<FeatureLayerProps> = (props: FeatureLayerProps) => {
-    const [myFeatureLayer, setMyFeatureLayer] = useState(null);
+    const [myFeatureLayer, setMyFeatureLayer] = useState(null)
     
     useEffect(() => {
         loadModules(['esri/layers/FeatureLayer']).then(([FeatureLayer]) => {
             const myFeatureLayer = new FeatureLayer(
                 props.featureLayerProperties
-            );
+            )
 
-            setMyFeatureLayer(myFeatureLayer);
-            props.map?.add(myFeatureLayer);
+            setMyFeatureLayer(myFeatureLayer)
+            props.map?.add(myFeatureLayer)
 
-        }).catch((err) => console.error(err));
+        }).catch((err) => console.error(err))
 
         return function cleanup() {
-            props.map?.remove(myFeatureLayer!);
+            props.map?.remove(myFeatureLayer!)
         }
-    }, [ props ]);
+    }, [ props ])
 
-    return null;
+    return null
 }
 
-export default FeatureLayer;
+export default FeatureLayer

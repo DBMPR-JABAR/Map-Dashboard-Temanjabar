@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../app/store';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../app/store'
 import { mapOptions, mapViewOptions } from '../utils/map'
 
 
@@ -11,7 +11,7 @@ export interface ViewState {
 const initialState: ViewState = {
     type: "2d",
     view: null
-};
+}
 
 export const viewSlice = createSlice({
     name: 'esri',
@@ -28,4 +28,4 @@ export const { toggle3D } = viewSlice.actions
 
 export const selectMapType = (state: RootState) => state.view.type
 
-export default viewSlice.reducer;
+export default viewSlice.reducer

@@ -1,5 +1,5 @@
 import * as React from "react"
-import FeatureLayer from "./esri_components/FeatureLayer"
+import FeatureLayer from "./base_components/FeatureLayer"
 
 type FeatureLayersProps = {
     map: __esri.Map | null
@@ -15,4 +15,4 @@ const FeatureLayers : Function = (props: FeatureLayersProps) : JSX.Element[] => 
 
 }
 
-export default FeatureLayers;
+export default FeatureLayers
