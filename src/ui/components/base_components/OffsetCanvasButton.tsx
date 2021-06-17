@@ -1,4 +1,5 @@
 import * as React from "react"
+import * as CSS from 'csstype'
 
 type OffsetCanvasProps = {
     btnId: string
@@ -7,10 +8,10 @@ type OffsetCanvasProps = {
     icon: string
     position: 'start' | 'end'
     children: React.ReactNode
+    visible?: boolean
 }
 
-
-const OffsetCanvasButton : React.FC<OffsetCanvasProps> = (props: OffsetCanvasProps) => {
+const OffsetCanvasButton : React.FC<OffsetCanvasProps> = ({visible = true, ...props}: OffsetCanvasProps) => {
     return <>
         <div
             id={props.btnId}
@@ -19,7 +20,8 @@ const OffsetCanvasButton : React.FC<OffsetCanvasProps> = (props: OffsetCanvasPro
             role="button"
             tabIndex={0}
             title={props.title}
-            data-bs-toggle="offcanvas" data-bs-target={'#'+props.offsetId}>
+            data-bs-toggle="offcanvas" data-bs-target={'#'+props.offsetId}
+            style={(visible) ? {display: 'flex'} : {display: 'none'}}>
             <span
                 aria-hidden="true"
             ><i className={props.icon}></i></span>

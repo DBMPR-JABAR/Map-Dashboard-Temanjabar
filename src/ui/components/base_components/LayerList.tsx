@@ -2,6 +2,8 @@ import  { useState, useEffect, FunctionComponent } from 'react'
 import  * as React from 'react'
 import { loadModules } from 'esri-loader'
 import OffsetCanvasButton from './OffsetCanvasButton'
+import { useAppSelector } from '../../../app/hooks'
+import { selectFeatureLayer } from '../../../features/featureSlice'
 
 export type LegendsProps = {
     view: __esri.MapView | __esri.SceneView | null,
@@ -10,6 +12,7 @@ export type LegendsProps = {
 
 const LayerList : FunctionComponent<LegendsProps> = (props: LegendsProps) => {
     const [layerList, setLayerList] = useState(null)
+    const isLayerDisplayed = useAppSelector(selectFeatureLayer).length > 0
     
     useEffect(() => {
         const containerLayerList : HTMLElement | null = document.querySelector("#offcanvasLayerList")
@@ -48,7 +51,8 @@ const LayerList : FunctionComponent<LegendsProps> = (props: LegendsProps) => {
             offsetId="displayLayerList"
             icon="fas fa-layer-group"
             position="end"
-            title="Layer List"> 
+            title="Layer List"
+            visible={(isLayerDisplayed) ? true : false}> 
             <div id="offcanvasLayerList"></div>
         </OffsetCanvasButton>
     )

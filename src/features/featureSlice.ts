@@ -9,7 +9,7 @@ export interface FeatureState {
   
 const initialState: FeatureState = {
     featureLayerProps : [
-        {url: "https://tj.temanjabar.net/geoserver/gsr/services/temanjabar/FeatureServer/4/"}
+        // {url: "https://tj.temanjabar.net/geoserver/gsr/services/temanjabar/FeatureServer/4/"}
     ]
 }
 

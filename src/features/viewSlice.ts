@@ -5,12 +5,20 @@ import { mapOptions, mapViewOptions } from '../utils/map'
 
 export interface ViewState {
     type: "2d" | "3d",
-    view: __esri.View | null
+    view: __esri.View | null,
+    coordinate: {
+        latitude: number,
+        longitude: number
+    }
 }
   
 const initialState: ViewState = {
     type: "2d",
-    view: null
+    view: null,
+    coordinate: {
+        latitude: 0,
+        longitude: 0
+    }
 }
 
 export const viewSlice = createSlice({
@@ -19,13 +27,16 @@ export const viewSlice = createSlice({
     reducers: {
         toggle3D: (state) => {
             state.type = (state.type === "2d") ? "3d" : "2d"
+        },
+        setCoordinate: (state, action: PayloadAction<{lat: number, long: number}>) => {
+            state.coordinate = {latitude: action.payload.lat, longitude: action.payload.long}
         }
     }
 })
 
-export const { toggle3D } = viewSlice.actions
+export const { toggle3D, setCoordinate } = viewSlice.actions
 
 
-export const selectMapType = (state: RootState) => state.view.type
+export const selectView = (state: RootState) => state.view
 
 export default viewSlice.reducer

@@ -3,18 +3,20 @@ import { useState } from "react"
 import FeatureLayers from "./FeatureLayers"
 import ScaleBar from "./base_components/ScaleBar"
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
-import { selectMapType, toggle3D } from "../../features/viewSlice"
+import { selectView, setCoordinate, toggle3D } from "../../features/viewSlice"
 import BasemapGallery from "./base_components/BasemapGallery"
 import { addFeatureLayer, selectFeatureLayer } from "../../features/featureSlice"
 import { mapOptions, mapViewOptions, sceneViewOptions } from "../../utils/map"
 import EsriMap from "./base_components/EsriMap"
 import LayerList from "./base_components/LayerList"
 import Legends from "./base_components/Legends"
-
+import { EventProperties } from "@esri/react-arcgis/dist/esm/components/ArcBase"
+import ControlButton from "./base_components/ControlButton"
 
 function MapScene() {
-    const mapType = useAppSelector(selectMapType)
+    const mapType = useAppSelector(selectView).type
     const layers = useAppSelector(selectFeatureLayer)
+    const coordinate = useAppSelector(selectView).coordinate
 
     const dispatch = useAppDispatch()
 
@@ -22,6 +24,13 @@ function MapScene() {
     const [view, setView] = useState<__esri.MapView | __esri.SceneView | null>(null)
 
     const handleError = (e: any) => console.log(e)
+
+    const handleClick = (e: EventProperties) => {
+        dispatch(setCoordinate({
+            lat: Math.round(e.mapPoint.latitude * 10000) / 10000,
+            long: Math.round(e.mapPoint.longitude * 10000) / 10000
+        }))
+    }
 
     const addLayer = () => {
         dispatch(addFeatureLayer({
@@ -38,16 +47,18 @@ function MapScene() {
                 sceneViewProps = { sceneViewOptions }
                 handleError= { handleError }>
 
-                <BasemapGallery view={view} position={{ position: "top-right" }} />
+                <BasemapGallery view={view} position={{ position: "top-right", index: 0 }} />
+                <ControlButton view={view} position={{ position: "top-right" }} />
                 <FeatureLayers view={view} map={map} data={layers} />
                 <ScaleBar view={view} position={{ position: "bottom-left" }} />
                 <LayerList view={view} position={{ position: "bottom-right" }} />
-                <Legends view={view} position={{ position: "bottom-left", index: 1 }} />
+                <Legends view={view} position={{ position: "bottom-left" }} />
                 
             </EsriMap>
 
             <button onClick={ () => addLayer()}>Debug Layer</button>
             <button onClick={ () => dispatch(toggle3D())}>3D Map</button>
+            <button onClick={ () => console.log(coordinate)}>Get Coordinate</button>
         </>
     )
 }

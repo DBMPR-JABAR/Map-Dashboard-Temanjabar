@@ -1,4 +1,5 @@
 import { Map, Scene } from "@esri/react-arcgis"
+import { EventProperties } from "@esri/react-arcgis/dist/esm/components/ArcBase"
 import * as React from "react"
 
 type EsriMapProps = {
