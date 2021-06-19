@@ -5,17 +5,19 @@ import ScaleBar from "./base_components/ScaleBar"
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import { selectView, setCoordinate, toggle3D } from "../../features/viewSlice"
 import BasemapGallery from "./base_components/BasemapGallery"
-import { addFeatureLayer, selectFeatureLayer } from "../../features/featureSlice"
+import { addFeatureLayer, selectFeature } from "../../features/featureSlice"
 import { mapOptions, mapViewOptions, sceneViewOptions } from "../../utils/map"
 import EsriMap from "./base_components/EsriMap"
 import LayerList from "./base_components/LayerList"
 import Legends from "./base_components/Legends"
 import { EventProperties } from "@esri/react-arcgis/dist/esm/components/ArcBase"
 import ControlButton from "./base_components/ControlButton"
+import Filter from "./base_components/Filter"
+import ViewToggleButton from "./base_components/ViewToggleButton"
 
 function MapScene() {
     const mapType = useAppSelector(selectView).type
-    const layers = useAppSelector(selectFeatureLayer)
+    const layers = useAppSelector(selectFeature).featureLayerProps
     const coordinate = useAppSelector(selectView).coordinate
 
     const dispatch = useAppDispatch()
@@ -47,7 +49,9 @@ function MapScene() {
                 sceneViewProps = { sceneViewOptions }
                 handleError= { handleError }>
 
-                <BasemapGallery view={view} position={{ position: "top-right", index: 0 }} />
+                <ViewToggleButton view={view} position={{ position: "top-left" }} />
+                <Filter view={view} position={{ position: "top-right", index: 0 }} />
+                <BasemapGallery view={view} position={{ position: "top-right", index: 1 }} />
                 <ControlButton view={view} position={{ position: "top-right" }} />
                 <FeatureLayers view={view} map={map} data={layers} />
                 <ScaleBar view={view} position={{ position: "bottom-left" }} />
@@ -57,7 +61,6 @@ function MapScene() {
             </EsriMap>
 
             <button onClick={ () => addLayer()}>Debug Layer</button>
-            <button onClick={ () => dispatch(toggle3D())}>3D Map</button>
             <button onClick={ () => console.log(coordinate)}>Get Coordinate</button>
         </>
     )
