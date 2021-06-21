@@ -1,6 +1,6 @@
 import * as React from "react"
 import MapFloatingButton from "./MapFloatingButton"
-import { env } from "../../../../env"
+import { env } from "../../../env"
 import { loadModules } from "esri-loader"
 import OffsetCanvasButton from "./OffsetCanvasButton"
 

@@ -1,15 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
+import { Coordinate } from '../utils/constants'
 import { mapOptions, mapViewOptions } from '../utils/map'
 
 
 export interface ViewState {
     type: "2d" | "3d",
     view: __esri.View | null,
-    coordinate: {
-        latitude: number,
-        longitude: number
-    }
+    coordinate: Coordinate
 }
   
 const initialState: ViewState = {

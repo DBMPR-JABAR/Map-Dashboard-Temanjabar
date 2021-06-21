@@ -1,7 +1,7 @@
 import  { useEffect, FunctionComponent } from 'react'
 import  * as React from 'react'
 import OffsetCanvasButton from './OffsetCanvasButton'
-import FilterSelection from '../filter_components/FilterSelection'
+import FilterSelection from '../FilterSelection'
 
 export type FilterProps = {
     view: __esri.MapView | __esri.SceneView | null,

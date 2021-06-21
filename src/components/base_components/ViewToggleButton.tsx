@@ -1,10 +1,10 @@
 import * as React from "react"
 import MapFloatingButton from "./MapFloatingButton"
-import { env } from "../../../../env"
+import { env } from "../../../env"
 import { loadModules } from "esri-loader"
 import OffsetCanvasButton from "./OffsetCanvasButton"
-import { useAppDispatch, useAppSelector } from "../../../app/hooks"
-import { selectView, toggle3D } from "../../../features/viewSlice"
+import { useAppDispatch, useAppSelector } from "../../app/hooks"
+import { selectView, toggle3D } from "../../features/viewSlice"
 
 type ViewToggleButtonProps = {
     view: __esri.MapView | __esri.SceneView | null,

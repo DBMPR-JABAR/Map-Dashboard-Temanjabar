@@ -2,9 +2,9 @@ import * as React from "react";
 import Select from "react-select"
 import type {OptionsType, GroupTypeBase, Styles} from 'react-select'
 
-import { useAppDispatch } from "../../../app/hooks";
-import { setSPP, setUPTD } from "../../../features/featureSlice";
-import getSUP from "../../../features/SupAPI"
+import { useAppDispatch } from "../app/hooks";
+import { setSPP, setUPTD } from "../features/featureSlice";
+import getSUP from "../features/request/SupAPI"
 
 type SelectOption = {
     value: string,
@@ -29,7 +29,6 @@ const kegiatanOptions: GroupSelect[] = [
         label: "Kondisi Jalan",
         options: [
             { value: "ruasjalan", label: "Ruas Jalan"},
-            { value: "kemantapanjalan", label:  "Survei Kondisi Kemantapan Jalan"},
             { value: "kemantapanjalan", label:  "Survei Kondisi Kemantapan Jalan"},
             { value: "kondisijalan", label:  "Survei Kondisi Jalan dengan Roaddroid"},
             { value: "kondisijalan_titik", label:  "Survei Kondisi Jalan (Titik Roaddroid)"},
@@ -112,7 +111,7 @@ const FilterSelection : React.FC = () => {
             handleSPPChange(sppValue)
             setSppOptions(sppValue as SelectOption[])
             setIsLoading(false)
-        })
+        }).catch(e => console.log(e))
     }   
 
     const handleSPPChange = (value: OptionsType<SelectOption>) => {

@@ -1,15 +1,15 @@
-import { env } from '../../../env'
+import { env } from '../../../../env'
+import { ACTION_ID } from '../jalan';
 
-type config = {
-    popUpTemplate: __esri.PopupTemplate,
-    featureProperties: __esri.FeatureLayerProperties
-}
+const PATH = env.geoSvrUrl + "geoserver/gsr/services/temanjabar/FeatureServer/0/"
+const LAYER_ID = "rjp"
+const TITLE = "Ruas Jalan Provinsi"
 
 const prepSVAction : __esri.ActionButtonProperties = {
     type: "button",
     title: "Lihat Street View",
-    id: "prep-sv",
-    className: "fas fa-thumbs-up"
+    id: ACTION_ID,
+    className: "fas fa-street-view"
 };
 
 const popUpTemplate : __esri.PopupTemplateProperties = {
@@ -71,23 +71,26 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
     actions: [prepSVAction as __esri.ActionButton]
 }
 
+const symbol : __esri.SimpleLineSymbolProperties = {
+    type: "simple-line", 
+    color: "green",
+    width: "2px",
+    style: "solid",
+}
 
-export const jalanProvinsiConfig  = {
-    url: env.baseUrl + "/geoserver/gsr/services/temanjabar/FeatureServer/0/",
+const renderer: __esri.SimpleRendererProperties = {
+    type: "simple",
+    symbol: symbol
+}
+
+export const jalanProvinsiConfig : __esri.FeatureLayerProperties = {
+    url: PATH,
     customParameters: {
         ak: env.authKey
     },
-    title: 'Ruas Jalan Provinsi',
-    id: 'rjp',
+    title: TITLE,
+    id: LAYER_ID,
     outFields: ["*"],
     popupTemplate: popUpTemplate,
-    renderer: {
-        type: "simple",
-        symbol: {
-            type: "simple-line",
-            color: "green",
-            width: "2px",
-            style: "solid",
-        }
-    }
+    renderer: renderer
 }

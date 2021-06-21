@@ -1,10 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
 import { mapOptions, mapViewOptions } from '../utils/map'
-import { jalanProvinsiConfig } from '../utils/map_config/jalan_provinsi'
+
+import { jalanProvinsiConfig } from '../utils/map_config/jalan/jalan_provinsi'
+import { surveiRoaddroidRuasConfig } from '../utils/map_config/survei_roaddroid_ruas'
+import { kemantapanJalanConfig } from '../utils/map_config/kemantapan_jalan'
+import { surveiRoaddroidTitikConfig } from '../utils/map_config/survei_roaddroid_titik'
+import { ruasJalanLayerConfig } from '../utils/map_config/jalan'
 
 export interface FeatureState {
-    featureLayerProps: __esri.FeatureLayerProperties[]
+    featureLayerProps: __esri.LayerProperties[]
     uptd: string[]
     sup: string[]
     kegiatan: string[]
@@ -12,7 +17,7 @@ export interface FeatureState {
   
 const initialState: FeatureState = {
     featureLayerProps : [
-        // {url: "https://tj.temanjabar.net/geoserver/gsr/services/temanjabar/FeatureServer/4/"}
+        surveiRoaddroidTitikConfig
     ],
     uptd: [],
     sup: [],
