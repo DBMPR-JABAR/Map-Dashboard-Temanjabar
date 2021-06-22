@@ -16,6 +16,7 @@ const layers = [
 ]
 
 export const rawanBencanaConfig : __esri.GroupLayerProperties = {
+    myType: "group-layer",
     id: LAYER_ID,
     title: TITLE,
     layers: layers

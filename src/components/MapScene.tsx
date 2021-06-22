@@ -17,7 +17,6 @@ import Layers from "./Layers"
 
 function MapScene() {
     const mapType = useAppSelector(selectView).type
-    const layers = useAppSelector(selectFeature).featureLayerProps
     const coordinate = useAppSelector(selectView).coordinate
 
     const dispatch = useAppDispatch()
@@ -47,7 +46,6 @@ function MapScene() {
                 <BasemapGallery view={view} position={{ position: "top-right", index: 1 }} />
                 <ControlButton view={view} position={{ position: "top-right" }} />
                 <Layers view={view} map={map} />
-                <FeatureLayers view={view} map={map} data={layers} />
                 <ScaleBar view={view} position={{ position: "bottom-left" }} />
                 <LayerList view={view} position={{ position: "bottom-right" }} />
                 <Legends view={view} position={{ position: "bottom-left" }} />

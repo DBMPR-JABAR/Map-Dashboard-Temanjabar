@@ -2,64 +2,12 @@ import * as React from "react";
 import Select from "react-select"
 import type {OptionsType, GroupTypeBase, Styles} from 'react-select'
 
-import { useAppDispatch } from "../app/hooks";
-import { setSPP, setUPTD } from "../features/featureSlice";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
+import { selectFeature, setKegiatan, setSPP, setTanggal, setUPTD } from "../features/featureSlice";
 import getSUP from "../features/request/SupAPI"
 
-type SelectOption = {
-    value: string,
-    label: string
-}
-type GroupSelect = {
-    label: string,
-    options: SelectOption[]
-}
-
-const uptdOptions : SelectOption[] = [
-    { value: 'uptd1', label: 'UPTD 1' },
-    { value: 'uptd2', label: 'UPTD 2' },
-    { value: 'uptd3', label: 'UPTD 3' },
-    { value: 'uptd4', label: 'UPTD 4' },
-    { value: 'uptd5', label: 'UPTD 5' },
-    { value: 'uptd6', label: 'UPTD 6' }
-]
-
-const kegiatanOptions: GroupSelect[] = [
-    {
-        label: "Kondisi Jalan",
-        options: [
-            { value: "ruasjalan", label: "Ruas Jalan"},
-            { value: "kemantapanjalan", label:  "Survei Kondisi Kemantapan Jalan"},
-            { value: "kondisijalan", label:  "Survei Kondisi Jalan dengan Roaddroid"},
-            { value: "kondisijalan_titik", label:  "Survei Kondisi Jalan (Titik Roaddroid)"},
-        ]
-    },
-    {
-        label: "Kebencanaan",
-        options: [
-            { value: "laporanbencana", label: "Laporan Bencana"},
-            { value: "rawanbencana", label:  "Titik Rawan Bencana"},
-            { value: "datarawanbencana", label:  "Area Rawan Bencana"},
-        ]
-    },
-    {
-        label: "Proyek",
-        options: [
-            { value: "jembatan", label: "Jembatan"},
-            { value: "pekerjaan", label:  "Paket Pekerjaan"},
-            { value: "laporanmasyarakat", label:  "Laporan Masyarakat"},
-        ]
-    },
-    {
-        label: "Tata Ruang",
-        options: [
-            { value: "cctv", label: "CCTV"},
-            { value: "vehiclecounting", label:  "Vehicle Counting"},
-        ]
-    },
-];
-
-
+import { uptdOptions, kegiatanOptions } from "../utils/options";
+import type { SelectOption } from '../utils/options'
 
 const customStyles: Partial<Styles<SelectOption, true, GroupTypeBase<SelectOption>>> | undefined = {
  
@@ -85,6 +33,7 @@ const customStyles: Partial<Styles<SelectOption, true, GroupTypeBase<SelectOptio
 
 const FilterSelection : React.FC = () => {
     const dispatch = useAppDispatch()
+    const tanggal = useAppSelector(selectFeature).tanggal
 
     const [sppOptions, setSppOptions] = React.useState<SelectOption[]>([])
     const [isLoading, setIsLoading] = React.useState(false)
@@ -129,8 +78,16 @@ const FilterSelection : React.FC = () => {
 
     const handleKegiatanChange = (value: OptionsType<SelectOption>) => {
         setKegiatanValue(value)
-
+        const arr = value.map(x => x.value)
+        dispatch(setKegiatan(arr))
+        
         btnTrigger(sppValue, value)
+    }
+
+    const handleTanggal = (event: React.ChangeEvent<HTMLInputElement>, type: "mulai" | "sampai") => {
+        (type === "mulai")
+            ? dispatch(setTanggal({...tanggal, mulai: event.target.value}))
+            : dispatch(setTanggal({...tanggal, sampai: event.target.value}))
     }
 
     return <>
@@ -151,17 +108,18 @@ const FilterSelection : React.FC = () => {
                     placeholder="Pilih Kegiatan"
                     value={kegiatanValue}  onChange={(value) => { handleKegiatanChange(value) }} />
         </div>
-        <div id="filterDate" className="">
+        <div className={(tanggal.displayed) ? "d-block" : "d-none"}>
             <div className="form-group mt-2">
                 <label htmlFor="dari">Mulai Tanggal: </label>
-                <input className="form-control mulaiTanggal" type="date" id="dari" />
+                <input className="form-control" 
+                    onChange={(event) => {handleTanggal(event, "mulai")}} type="date" value={tanggal.mulai} />
             </div>
             <div className="form-group mt-2">
                 <label htmlFor="sampai">Sampai Tanggal: </label>
-                <input className="form-control sampaiTanggal" type="date" id="sampai" />
+                <input className="form-control" onChange={(event) => {handleTanggal(event, "sampai")}} type="date" value={tanggal.sampai} />
             </div>
         </div>
-        <button disabled={btnDisabled} className={"mt-2 form-control btn-"+(btnDisabled?'disabled':'primary')}>Proses</button>
+        <button disabled={btnDisabled} className={"mt-4 form-control btn-"+(btnDisabled?'disabled':'primary')}>Proses</button>
     </>
 }
 

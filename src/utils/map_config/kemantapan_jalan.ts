@@ -104,6 +104,7 @@ const renderer: __esri.SimpleRendererProperties = {
 }
 
 export const kemantapanJalanConfig : __esri.FeatureLayerProperties = {
+    myType: "feature-layer",
     url: PATH,
     customParameters: {
         ak: env.authKey

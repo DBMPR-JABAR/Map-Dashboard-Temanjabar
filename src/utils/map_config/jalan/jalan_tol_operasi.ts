@@ -41,7 +41,20 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
     actions: [prepSVAction as __esri.ActionButton]
 }
 
-export const jalanTolOperasionalConfig  = {
+const symbol : __esri.SimpleLineSymbolProperties = {
+    type: "simple-line", 
+    color: "yellow",
+    width: "2px",
+    style: "solid",
+}
+
+const renderer: __esri.SimpleRendererProperties = {
+    type: "simple",
+    symbol: symbol
+}
+
+export const jalanTolOperasionalConfig  : __esri.FeatureLayerProperties = {
+    myType: "feature-layer",
     url: PATH,
     customParameters: {
         ak: env.authKey
@@ -50,13 +63,5 @@ export const jalanTolOperasionalConfig  = {
     id: LAYER_ID,
     outFields: ["*"],
     popupTemplate: popUpTemplate,
-    renderer: {
-        type: "simple",
-        symbol: {
-            type: "simple-line", 
-            color: "yellow",
-            width: "2px",
-            style: "solid",
-        }
-    }
+    renderer: renderer
 }

@@ -126,6 +126,7 @@ const renderer: __esri.UniqueValueRendererProperties = {
 }
 
 export const surveiRoaddroidRuasConfig : __esri.FeatureLayerProperties = {
+    myType: "feature-layer",
     url: PATH,
     customParameters: {
         ak: env.authKey

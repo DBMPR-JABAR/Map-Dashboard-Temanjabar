@@ -26,7 +26,8 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
     }]
 }
 
-export const indeksResikoBanjirConfig  = {
+export const indeksResikoBanjirConfig : __esri.FeatureLayerProperties  = {
+    myType: "feature-layer",
     url: PATH,
     title: TITLE,
     id: LAYER_ID,

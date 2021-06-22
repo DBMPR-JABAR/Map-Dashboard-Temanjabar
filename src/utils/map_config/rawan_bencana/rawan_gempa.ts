@@ -18,7 +18,8 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
     }]
 }
 
-export const rawanGempaConfig  = {
+export const rawanGempaConfig  : __esri.FeatureLayerProperties  = {
+    myType: "feature-layer",
     url: PATH,
     title: TITLE,
     id: LAYER_ID,

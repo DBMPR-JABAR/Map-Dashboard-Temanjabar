@@ -84,6 +84,7 @@ const renderer: __esri.SimpleRendererProperties = {
 }
 
 export const jalanProvinsiConfig : __esri.FeatureLayerProperties = {
+    myType: "feature-layer",
     url: PATH,
     customParameters: {
         ak: env.authKey

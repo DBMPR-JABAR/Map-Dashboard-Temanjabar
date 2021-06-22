@@ -12,7 +12,7 @@ export type LegendsProps = {
 
 const LayerList : FunctionComponent<LegendsProps> = (props: LegendsProps) => {
     const [layerList, setLayerList] = useState(null)
-    const isLayerDisplayed = useAppSelector(selectFeature).featureLayerProps.length > 0
+    const isLayerDisplayed = useAppSelector(selectFeature).layerProps.length > 0
     
     useEffect(() => {
         const containerLayerList : HTMLElement | null = document.querySelector("#offcanvasLayerList")
