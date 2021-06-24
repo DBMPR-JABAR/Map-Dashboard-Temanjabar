@@ -11,12 +11,11 @@ const jalanLayer = [
     jalanTolKonstruksiConfig,
     jalanTolOperasionalConfig,
     jalanNasionalConfig,
-    jalanProvinsiConfig,
 ]
 
 export const ruasJalanLayerConfig : __esri.GroupLayerProperties = {
     myType: "group-layer",
     id: LAYER_ID,
     title: TITLE,
-    layers: jalanLayer,
+    layers: jalanLayer
 }

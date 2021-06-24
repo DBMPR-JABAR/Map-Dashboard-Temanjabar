@@ -8,6 +8,7 @@ import getSUP from "../features/request/SupAPI"
 
 import { uptdOptions, kegiatanOptions } from "../utils/options";
 import type { SelectOption } from '../utils/options'
+import { Tanggal } from "../utils/constants";
 
 const customStyles: Partial<Styles<SelectOption, true, GroupTypeBase<SelectOption>>> | undefined = {
  
@@ -33,7 +34,7 @@ const customStyles: Partial<Styles<SelectOption, true, GroupTypeBase<SelectOptio
 
 const FilterSelection : React.FC = () => {
     const dispatch = useAppDispatch()
-    const tanggal = useAppSelector(selectFeature).tanggal
+    const tanggalInit = useAppSelector(selectFeature).tanggal
 
     const [sppOptions, setSppOptions] = React.useState<SelectOption[]>([])
     const [isLoading, setIsLoading] = React.useState(false)
@@ -42,6 +43,7 @@ const FilterSelection : React.FC = () => {
     const [sppValue, setSppValue] = React.useState<OptionsType<SelectOption> | null>(null)
     const [uptdValue, setUptdValue] = React.useState<OptionsType<SelectOption> | null >(null)
     const [btnDisabled, setBtnDisabled] = React.useState<boolean>(true)
+    const [tglValue, setTglValue] = React.useState<Tanggal>(tanggalInit)
 
     const btnTrigger = (spp: OptionsType<SelectOption> | null, kegiatan: OptionsType<SelectOption> | null) => {
         if(spp && kegiatan){
@@ -52,7 +54,6 @@ const FilterSelection : React.FC = () => {
     const handleUPTDChange = (value: OptionsType<SelectOption>) => {
         setUptdValue(value)
         const uptdArray = value.map(x => x.value)
-        dispatch(setUPTD(uptdArray))
 
         setIsLoading(true)
         loadOptions(uptdArray).then((value) => {
@@ -65,8 +66,6 @@ const FilterSelection : React.FC = () => {
 
     const handleSPPChange = (value: OptionsType<SelectOption>) => {
         setSppValue(value)
-        const arr = value.map(x => x.value)
-        dispatch(setSPP(arr))
 
         btnTrigger(value, kegiatanValue)
     }
@@ -78,16 +77,25 @@ const FilterSelection : React.FC = () => {
 
     const handleKegiatanChange = (value: OptionsType<SelectOption>) => {
         setKegiatanValue(value)
-        const arr = value.map(x => x.value)
-        dispatch(setKegiatan(arr))
         
         btnTrigger(sppValue, value)
     }
 
     const handleTanggal = (event: React.ChangeEvent<HTMLInputElement>, type: "mulai" | "sampai") => {
         (type === "mulai")
-            ? dispatch(setTanggal({...tanggal, mulai: event.target.value}))
-            : dispatch(setTanggal({...tanggal, sampai: event.target.value}))
+            ? setTglValue({...tglValue, mulai: event.target.value})
+            : setTglValue({...tglValue, sampai: event.target.value})
+    }
+
+    const handleClick = () => {
+        const uptdArr = uptdValue!.map(uptd => uptd.value)
+        const sppArr = sppValue!.map(spp => spp.value)
+        const kegiatanArr = kegiatanValue!.map(kegiatan => kegiatan.value)
+
+        dispatch(setUPTD(uptdArr))
+        dispatch(setSPP(sppArr))
+        dispatch(setKegiatan(kegiatanArr))
+        dispatch(setTanggal(tglValue))
     }
 
     return <>
@@ -108,18 +116,19 @@ const FilterSelection : React.FC = () => {
                     placeholder="Pilih Kegiatan"
                     value={kegiatanValue}  onChange={(value) => { handleKegiatanChange(value) }} />
         </div>
-        <div className={(tanggal.displayed) ? "d-block" : "d-none"}>
+        <div className={(tglValue.displayed) ? "d-block" : "d-none"}>
             <div className="form-group mt-2">
                 <label htmlFor="dari">Mulai Tanggal: </label>
                 <input className="form-control" 
-                    onChange={(event) => {handleTanggal(event, "mulai")}} type="date" value={tanggal.mulai} />
+                    onChange={(event) => {handleTanggal(event, "mulai")}} type="date" value={tglValue.mulai} />
             </div>
             <div className="form-group mt-2">
                 <label htmlFor="sampai">Sampai Tanggal: </label>
-                <input className="form-control" onChange={(event) => {handleTanggal(event, "sampai")}} type="date" value={tanggal.sampai} />
+                <input className="form-control" onChange={(event) => {handleTanggal(event, "sampai")}} type="date" value={tglValue.sampai} />
             </div>
         </div>
-        <button disabled={btnDisabled} className={"mt-4 form-control btn-"+(btnDisabled?'disabled':'primary')}>Proses</button>
+        <button disabled={btnDisabled} onClick={handleClick}
+            className={"mt-4 form-control btn-"+(btnDisabled?'disabled':'primary')}>Proses</button>
     </>
 }
 

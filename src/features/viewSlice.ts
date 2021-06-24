@@ -6,13 +6,11 @@ import { mapOptions, mapViewOptions } from '../utils/map'
 
 export interface ViewState {
     type: "2d" | "3d",
-    view: __esri.View | null,
     coordinate: Coordinate
 }
   
 const initialState: ViewState = {
     type: "2d",
-    view: null,
     coordinate: {
         latitude: 0,
         longitude: 0

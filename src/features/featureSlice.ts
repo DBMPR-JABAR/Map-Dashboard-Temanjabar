@@ -1,13 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
 import * as _ from 'lodash'
-import { HAS_TANGGAL } from '../utils/constants'
+import { HAS_TANGGAL, Tanggal } from '../utils/constants'
 
-type Tanggal = {
-    displayed: boolean,
-    mulai: string,
-    sampai: string
-}
 export interface FeatureState {
     layerProps: __esri.LayerProperties[]
     uptd: string[]
@@ -32,8 +27,11 @@ export const featureSlice = createSlice({
     name: 'esri',
     initialState,
     reducers: {
-        addFeatureLayer: (state, action: PayloadAction<__esri.FeatureLayerProperties>) => {
+        addLayer: (state, action: PayloadAction<__esri.LayerProperties>) => {
             state.layerProps.push(action.payload)
+        },
+        setLayer: (state, action: PayloadAction<__esri.LayerProperties[]>) => {
+            state.layerProps = action.payload
         },
         setUPTD: (state, action: PayloadAction<string[]>) => {
             state.uptd = action.payload
@@ -51,7 +49,7 @@ export const featureSlice = createSlice({
     }
 })
 
-export const { addFeatureLayer, setUPTD, setSPP, setKegiatan, setTanggal } = featureSlice.actions
+export const { addLayer, setLayer, setUPTD, setSPP, setKegiatan, setTanggal } = featureSlice.actions
 
 export const selectFeature = (state: RootState) => state.features
 

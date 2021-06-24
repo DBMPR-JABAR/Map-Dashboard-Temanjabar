@@ -12,7 +12,7 @@ export type LegendsProps = {
 
 const LayerList : FunctionComponent<LegendsProps> = (props: LegendsProps) => {
     const [layerList, setLayerList] = useState(null)
-    const isLayerDisplayed = useAppSelector(selectFeature).layerProps.length > 0
+    const isLayerDisplayed = useAppSelector(selectFeature).kegiatan.length > 0
     
     useEffect(() => {
         const containerLayerList : HTMLElement | null = document.querySelector("#offcanvasLayerList")
@@ -52,7 +52,8 @@ const LayerList : FunctionComponent<LegendsProps> = (props: LegendsProps) => {
             icon="fas fa-layer-group"
             position="end"
             title="Layer List"
-            visible={(isLayerDisplayed) ? true : false}> 
+            visible={(isLayerDisplayed) ? true : false}
+            > 
             <div id="offcanvasLayerList"></div>
         </OffsetCanvasButton>
     )

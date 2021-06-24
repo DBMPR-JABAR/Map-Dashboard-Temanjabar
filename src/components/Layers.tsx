@@ -1,20 +1,22 @@
 import * as React from "react"
-import { useAppSelector } from "../app/hooks"
-import { selectFeature } from "../features/featureSlice"
 import { Coordinate } from "../utils/constants"
 import ACTION from "../utils/popupAction"
 import FeatureLayer from "./base_components/FeatureLayer"
 import GroupLayer from "./base_components/GroupLayer"
 
-type LayersProps = {
+type LayerProps = {
     map: __esri.Map | null
     view: __esri.MapView | __esri.SceneView | null
+    data: __esri.LayerProperties[]
 }
 
-const Layers : Function = (props: LayersProps) : JSX.Element[] => {
-    // props.map?.removeAll()
 
-    const allLayers = useAppSelector(selectFeature).layerProps
+const Layers : Function = (props: LayerProps) : JSX.Element[] => {
+    props.map?.removeAll()
+
+    const allLayers = props.data
+
+    // ----- POSSIBLY BUG ----- //
 
     React.useEffect(() => {
 
@@ -36,7 +38,6 @@ const Layers : Function = (props: LayersProps) : JSX.Element[] => {
                 const attributes = view.popup.viewModel.selectedFeature.attributes
                 ACTION[id as keyof typeof ACTION](attributes, coord)
             });
-
 
         })
 

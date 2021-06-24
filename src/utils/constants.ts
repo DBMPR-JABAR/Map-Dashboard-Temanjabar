@@ -49,4 +49,8 @@ export type Coordinate = {
     latitude: number,
     longitude: number
 }
-
+export type Tanggal = {
+    displayed: boolean,
+    mulai: string,
+    sampai: string
+}
