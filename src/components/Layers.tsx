@@ -1,3 +1,4 @@
+import * as Layer from "esri/layers/Layer"
 import * as React from "react"
 import { Coordinate } from "../utils/constants"
 import ACTION from "../utils/popupAction"
@@ -12,10 +13,15 @@ type LayerProps = {
 
 
 const Layers : Function = (props: LayerProps) : JSX.Element[] => {
-    props.map?.removeAll()
-
-    const allLayers = props.data
-
+    const [allLayers, setLayers] = React.useState<__esri.LayerProperties[]>([])
+    
+    React.useEffect(() => {
+    console.log('testeste', props.map?.allLayers)
+    const isRemove = props.map?.allLayers.filter(layer => props.data.indexOf(layer) === -1)
+    isRemove?.forEach(layer => props.map?.remove(layer))
+    setLayers(props.data.filter(layer=> isRemove?.indexOf(layer as Layer)===-1))
+    }, [props.data])
+    
     // ----- POSSIBLY BUG ----- //
 
     React.useEffect(() => {
@@ -38,12 +44,11 @@ const Layers : Function = (props: LayerProps) : JSX.Element[] => {
                 const attributes = view.popup.viewModel.selectedFeature.attributes
                 ACTION[id as keyof typeof ACTION](attributes, coord)
             });
-
         })
 
-        return function cleanup() {
-            props.map?.removeAll()
-        }
+        // return function cleanup() {
+        //     props.map?.removeAll()
+        // }
     }, [ props.view ])
 
     return allLayers.map((properties, index) => 

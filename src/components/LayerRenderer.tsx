@@ -73,12 +73,15 @@ const LayerRenderer : React.FC<RendererProps> = (props: RendererProps) => {
 
                 if(isMounted) setData(items)
             }
-        })
-
-        return () => {
+        }).catch(() => {
             setData([])
             isMounted = false
-        }
+        })
+
+        // return () => {
+        //     setData([])
+        //     isMounted = false
+        // }
 
     }, [ features ])
 
