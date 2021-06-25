@@ -3,7 +3,8 @@ import { loadModules } from 'esri-loader'
 
 export type FeatureLayerProps = {
     featureLayerProperties: __esri.FeatureLayerProperties,
-    map: __esri.Map | null
+    map: __esri.Map | null,
+    id: number
 }
 
 const FeatureLayer : FunctionComponent<FeatureLayerProps> = (props: FeatureLayerProps) => {
@@ -16,6 +17,7 @@ const FeatureLayer : FunctionComponent<FeatureLayerProps> = (props: FeatureLayer
             )
 
             setMyFeatureLayer(myFeatureLayer)
+
             props.map?.add(myFeatureLayer)
 
         }).catch((err) => console.error(err))
@@ -23,7 +25,7 @@ const FeatureLayer : FunctionComponent<FeatureLayerProps> = (props: FeatureLayer
         return function cleanup() {
             props.map?.remove(myFeatureLayer!)
         }
-    }, [ props ])
+    }, [props.id])
 
     return null
 }

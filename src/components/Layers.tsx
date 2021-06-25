@@ -13,16 +13,8 @@ type LayerProps = {
 
 
 const Layers : Function = (props: LayerProps) : JSX.Element[] => {
-    const [allLayers, setLayers] = React.useState<__esri.LayerProperties[]>([])
     
-    React.useEffect(() => {
-    console.log('testeste', props.map?.allLayers)
-    const isRemove = props.map?.allLayers.filter(layer => props.data.indexOf(layer) === -1)
-    isRemove?.forEach(layer => props.map?.remove(layer))
-    setLayers(props.data.filter(layer=> isRemove?.indexOf(layer as Layer)===-1))
-    }, [props.data])
-    
-    // ----- POSSIBLY BUG ----- //
+    props.map?.removeAll()
 
     React.useEffect(() => {
 
@@ -46,15 +38,12 @@ const Layers : Function = (props: LayerProps) : JSX.Element[] => {
             });
         })
 
-        // return function cleanup() {
-        //     props.map?.removeAll()
-        // }
     }, [ props.view ])
 
-    return allLayers.map((properties, index) => 
+    return props.data.map((properties, index) => 
         (properties.myType === "group-layer")
-        ? <GroupLayer key={index} map={props.map} groupLayerProperties={properties} />
-        : <FeatureLayer key={index} map={props.map} featureLayerProperties={properties} />
+        ? <GroupLayer key={index} id={Math.random()} map={props.map} groupLayerProperties={properties} />
+        : <FeatureLayer key={index} id={Math.random()} map={props.map} featureLayerProperties={properties} />
     )
 }
 

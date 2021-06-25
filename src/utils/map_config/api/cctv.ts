@@ -49,7 +49,7 @@ const KEY = {
 const prepVidAction : __esri.ActionButtonProperties = {
     title: "Lihat Video",
     id: ACTION_ID,
-    className: "fas fa-cctv"
+    className: "fas fa-video"
 }
 
 const popupTemplate : __esri.PopupTemplateProperties = {

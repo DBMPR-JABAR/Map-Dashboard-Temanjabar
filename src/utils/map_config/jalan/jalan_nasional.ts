@@ -74,3 +74,5 @@ export const jalanNasionalConfig  : __esri.FeatureLayerProperties  = {
     popupTemplate: popUpTemplate,
     renderer: renderer
 }
+
+// ---- Search

@@ -3,7 +3,8 @@ import { loadModules } from 'esri-loader'
 
 export type GroupLayerProps = {
     groupLayerProperties: __esri.GroupLayerProperties,
-    map: __esri.Map | null
+    map: __esri.Map | null,
+    id: number
 }
 
 const GroupLayer : FunctionComponent<GroupLayerProps> = (props: GroupLayerProps) => {
@@ -21,6 +22,7 @@ const GroupLayer : FunctionComponent<GroupLayerProps> = (props: GroupLayerProps)
             })
 
             setMyGroupLayer(newGroupLayer)
+
             props.map?.add(newGroupLayer)
 
         }).catch((err) => console.error(err))
@@ -28,7 +30,7 @@ const GroupLayer : FunctionComponent<GroupLayerProps> = (props: GroupLayerProps)
         return function cleanup() {
             props.map?.remove(myGroupLayer!)
         }
-    }, [ props ])
+    }, [props.id])
 
     return null
 }

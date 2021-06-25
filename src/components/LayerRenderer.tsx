@@ -55,13 +55,13 @@ const LayerRenderer : React.FC<RendererProps> = (props: RendererProps) => {
                
                 // Request From API then To WMS
                 requestKegiatan(requestBody).then((response) => {
-                    mapServer.forEach((kegiatan) => {
-                        items.push(renderWMS[kegiatan](features.uptd, features.sup, features.tanggal))
-                    })
                     requestBody.kegiatan.forEach((kegiatan) => {
                         items.push(renderAPI[kegiatan](response.data))
                     })
-                    
+                }).then(() => {
+                    mapServer.forEach((kegiatan) => {
+                        items.push(renderWMS[kegiatan](features.uptd, features.sup, features.tanggal))
+                    })
                     if(isMounted) setData(items)
                 })
             }else{

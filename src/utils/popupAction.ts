@@ -9,10 +9,13 @@ declare var fluidPlayer: any;
 
 let ACTION : {[a: string]: (attibute: any, position: Coordinate) => void } = {
     
+    // Prepare Street View
     [jalanAction] : (_, pos) => {
         window.open(`http://maps.google.com/maps?q=&layer=c&cbll=${pos.latitude},${pos.longitude}`, 
                     'SV_map_bmpr');
     },
+
+    // Prepare Image
     [jembatanAction] : (attributes, _) => {
         const foto = attributes.FOTO;
         const fotoArr = foto.split(',');
@@ -24,6 +27,8 @@ let ACTION : {[a: string]: (attibute: any, position: Coordinate) => void } = {
         });
         document.querySelector('div.esri-popup__action[title="Lihat Foto"]')?.remove()
     },
+
+    // Prepare Video
     [vidAction] : (attributes, _) => {
         const url = attributes.URL;
 

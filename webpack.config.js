@@ -23,7 +23,7 @@ module.exports = {
   devServer: {
     contentBase: './deploy',
     open: true,
-    port:9000
+    port:8080
   },
   module: {
     rules: [
