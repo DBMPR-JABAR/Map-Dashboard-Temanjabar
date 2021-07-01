@@ -1,8 +1,10 @@
 import { env } from "../../../../env"
+import { LAYER } from "../../constants"
 
+const LAYER_ID = LAYER.JEMBATAN.id
+const TITLE = LAYER.JEMBATAN.title
 export const ACTION_ID = "prep-img"
-const LAYER_ID = "tx_jembatan"
-const TITLE = "Jembatan"
+
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
 const ICON = `http://localhost:8080/assets/images/marker/jembatan.png`

@@ -1,6 +1,8 @@
+import { LAYER } from "../../constants"
+
 const PATH = "https://satupeta.jabarprov.go.id/arcgis/rest/services/SATUPETA_BPBD/Kebencanaan/MapServer/9"
-const LAYER_ID = "longsorId"
-const TITLE = "Rawan Longsor"
+const LAYER_ID = LAYER.RAWAN_LONGSOR.id
+const TITLE = LAYER.RAWAN_LONGSOR.title
 
 const popUpTemplate : __esri.PopupTemplateProperties = {
     title: "{nm_ruas}",

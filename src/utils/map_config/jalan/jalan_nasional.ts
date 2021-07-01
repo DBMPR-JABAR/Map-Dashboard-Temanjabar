@@ -1,9 +1,10 @@
 import { env } from '../../../../env'
+import { LAYER } from '../../constants';
 import { ACTION_ID } from '../jalan';
 
 const PATH = env.geoSvrUrl + "geoserver/gsr/services/temanjabar/FeatureServer/2/"
-const LAYER_ID = "rjn"
-const TITLE = "Ruas Jalan Nasional"
+const LAYER_ID = LAYER.JALAN_NASIONAL.id
+const TITLE = LAYER.JALAN_NASIONAL.title
 
 const prepSVAction : __esri.ActionButtonProperties = {
     type: "button",
@@ -74,5 +75,3 @@ export const jalanNasionalConfig  : __esri.FeatureLayerProperties  = {
     popupTemplate: popUpTemplate,
     renderer: renderer
 }
-
-// ---- Search

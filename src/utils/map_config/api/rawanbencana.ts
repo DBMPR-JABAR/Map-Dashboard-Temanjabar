@@ -1,7 +1,9 @@
 import { env } from "../../../../env"
+import { LAYER } from "../../constants"
 
-const LAYER_ID = "tx_rawan_bencana"
-const TITLE = "Titik Rawan Bencana"
+const LAYER_ID = LAYER.TITIK_RAWAN_BENCANA.id
+const TITLE = LAYER.TITIK_RAWAN_BENCANA.title
+
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
 

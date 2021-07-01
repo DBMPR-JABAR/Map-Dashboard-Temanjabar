@@ -1,7 +1,9 @@
 import { env } from "../../../../env"
+import { LAYER } from "../../constants"
 
-const LAYER_ID = "tx_laporan_masyarakat"
-const TITLE = "Laporan Masyarakat"
+const LAYER_ID = LAYER.LAPORAN_MASYARAKAT.id
+const TITLE = LAYER.LAPORAN_MASYARAKAT.title
+
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
 const ICON = `http://localhost:8080/assets/images/marker/jembatan.png`

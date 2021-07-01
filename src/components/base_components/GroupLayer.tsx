@@ -4,31 +4,49 @@ import { loadModules } from 'esri-loader'
 export type GroupLayerProps = {
     groupLayerProperties: __esri.GroupLayerProperties,
     map: __esri.Map | null,
-    id: number
+    id: string
 }
 
 const GroupLayer : FunctionComponent<GroupLayerProps> = (props: GroupLayerProps) => {
-    const [myGroupLayer, setMyGroupLayer] = useState(null)
     
     useEffect(() => {
+        const layer = props.map?.findLayerById(props.groupLayerProperties.id!)        
+        if(layer){
+            props.map?.remove(layer)
+        }
+
         loadModules(['esri/layers/FeatureLayer','esri/layers/GroupLayer']).then(([FeatureLayer, GroupLayer]) => {
-            const newGroupLayer = new GroupLayer({
-                id: props.groupLayerProperties.id,
-                title: props.groupLayerProperties.title,
+
+            const addGroupLayer = new Promise((resolve, reject) => {
+
+                const groupLayer = new GroupLayer({
+                    id: props.groupLayerProperties.id,
+                    title: props.groupLayerProperties.title,
+                })
+
+                props.groupLayerProperties.layers?.forEach((value) => {
+
+                    const layer = props.map?.findLayerById(value.id!)
+                    if(layer){
+                        props.map?.remove(layer)
+                    }
+    
+                    groupLayer.add(new FeatureLayer(value))
+                })
+
+                props.map?.add(groupLayer);
+                resolve(groupLayer);
             })
 
-            props.groupLayerProperties.layers?.forEach((value) => {
-                newGroupLayer.add(new FeatureLayer(value))
-            })
-
-            setMyGroupLayer(newGroupLayer)
-
-            props.map?.add(newGroupLayer)
+            addGroupLayer
 
         }).catch((err) => console.error(err))
 
         return function cleanup() {
-            props.map?.remove(myGroupLayer!)
+            const layer = props.map?.findLayerById(props.groupLayerProperties.id!)        
+            if(layer){
+                props.map?.remove(layer)
+            }
         }
     }, [props.id])
 

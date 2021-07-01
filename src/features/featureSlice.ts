@@ -2,9 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
 import * as _ from 'lodash'
 import { HAS_TANGGAL, Tanggal } from '../utils/constants'
+import { FeatureSetMap } from '../components/Layers'
 
 export interface FeatureState {
-    layerProps: __esri.LayerProperties[]
+    featureLayer: FeatureSetMap[]
     uptd: string[]
     sup: string[]
     kegiatan: string[],
@@ -12,7 +13,7 @@ export interface FeatureState {
 }
   
 const initialState: FeatureState = {
-    layerProps : [],
+    featureLayer : [],
     uptd: [],
     sup: [],
     kegiatan: [],
@@ -27,11 +28,16 @@ export const featureSlice = createSlice({
     name: 'esri',
     initialState,
     reducers: {
-        addLayer: (state, action: PayloadAction<__esri.LayerProperties>) => {
-            state.layerProps.push(action.payload)
+        addLayer: (state, action: PayloadAction<FeatureSetMap>) => {
+            state.featureLayer.push(action.payload)
         },
-        setLayer: (state, action: PayloadAction<__esri.LayerProperties[]>) => {
-            state.layerProps = action.payload
+        setLayer: (state, action: PayloadAction<FeatureSetMap[]>) => {
+            state.featureLayer = action.payload
+        },
+        removeLayer: (state, action: PayloadAction<string>) => {
+            _.remove(state.featureLayer, {
+                id: action.payload
+            })
         },
         setUPTD: (state, action: PayloadAction<string[]>) => {
             state.uptd = action.payload
@@ -49,7 +55,7 @@ export const featureSlice = createSlice({
     }
 })
 
-export const { addLayer, setLayer, setUPTD, setSPP, setKegiatan, setTanggal } = featureSlice.actions
+export const { addLayer, setLayer, removeLayer, setUPTD, setSPP, setKegiatan, setTanggal } = featureSlice.actions
 
 export const selectFeature = (state: RootState) => state.features
 

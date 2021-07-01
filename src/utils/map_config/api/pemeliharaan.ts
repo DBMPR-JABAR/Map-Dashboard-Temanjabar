@@ -1,7 +1,9 @@
 import { env } from "../../../../env"
+import { LAYER } from "../../constants"
 
-const LAYER_ID = "tx_pemeliharaan"
-const TITLE = "Pemeliharaan"
+const LAYER_ID = LAYER.PEMELIHARAAN.id
+const TITLE = LAYER.PEMELIHARAAN.title
+
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
 const ICON = `http://localhost:8080/assets/images/marker/pemeliharaan.png`

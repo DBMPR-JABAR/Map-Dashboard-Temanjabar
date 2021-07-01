@@ -1,8 +1,7 @@
 import * as React from "react"
 import { useState } from "react"
-import { useAppSelector, useAppDispatch } from '../app/hooks'
+import { useAppSelector } from '../app/hooks'
 import { selectView} from "../features/viewSlice"
-import { addLayer } from "../features/featureSlice"
 import { mapOptions, mapViewOptions, sceneViewOptions } from "../utils/map"
 
 import BasemapGallery from "./base_components/BasemapGallery"
@@ -14,23 +13,15 @@ import ControlButton from "./base_components/ControlButton"
 import Filter from "./base_components/Filter"
 import ViewToggleButton from "./base_components/ViewToggleButton"
 import LayerRenderer from "./LayerRenderer"
+import SearchWidget from "./base_components/SearchWidget"
 
 function MapScene() {
     const mapType = useAppSelector(selectView).type
-    const coordinate = useAppSelector(selectView).coordinate
-
-    const dispatch = useAppDispatch()
 
     const [map, setMap] = useState<__esri.Map | null>(null)
     const [view, setView] = useState<__esri.MapView | __esri.SceneView | null>(null)
 
     const handleError = (e: any) => console.log(e)
-
-    const addALayer = () => {
-        dispatch(addLayer({
-            url: "https://tj.temanjabar.net/geoserver/gsr/services/temanjabar/FeatureServer/0/"
-        } as __esri.FeatureLayerProperties))
-    }
 
     return (
         <>
@@ -49,11 +40,9 @@ function MapScene() {
                 <ScaleBar view={view} position={{ position: "bottom-left" }} />
                 <LayerList view={view} position={{ position: "bottom-right" }} />
                 <Legends view={view} position={{ position: "bottom-left" }} />
+                <SearchWidget view={view} position={{ position: "top-left", index: 0 }} />
                 
             </EsriMap>
-
-            <button onClick={ () => addALayer()}>Debug Layer</button>
-            <button onClick={ () => console.log(coordinate)}>Get Coordinate</button>
         </>
     )
 }

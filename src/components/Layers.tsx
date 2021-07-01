@@ -1,20 +1,41 @@
-import * as Layer from "esri/layers/Layer"
+import * as _ from "lodash"
 import * as React from "react"
+import { useAppDispatch } from "../app/hooks"
+import { FeatureState, setLayer } from "../features/featureSlice"
 import { Coordinate } from "../utils/constants"
 import ACTION from "../utils/popupAction"
-import FeatureLayer from "./base_components/FeatureLayer"
-import GroupLayer from "./base_components/GroupLayer"
+import FeatureLayers from "./FeatureLayers"
 
 type LayerProps = {
     map: __esri.Map | null
     view: __esri.MapView | __esri.SceneView | null
     data: __esri.LayerProperties[]
+    features: FeatureState
 }
 
+export type FeatureSetMap = {
+    id: string
+    layer: __esri.FeatureLayer
+}
 
-const Layers : Function = (props: LayerProps) : JSX.Element[] => {
-    
-    props.map?.removeAll()
+const Layers : React.FC<LayerProps> = (props: LayerProps) => {
+    const dispatch = useAppDispatch()
+
+    const generateId = () => {
+        const features = props.features
+
+        const salt = Math.random()
+        const uptdString = features.uptd.join('')
+        const supString = features.sup.join('')
+        const tglString = `${features.tanggal.mulai}${features.tanggal.sampai}`
+        const kegiatan = features.kegiatan.join('')
+
+        const string = `${uptdString}${supString}${tglString}`
+
+        return btoa(string)
+    }
+
+    const [id, setId] = React.useState<string>("")
 
     React.useEffect(() => {
 
@@ -28,7 +49,6 @@ const Layers : Function = (props: LayerProps) : JSX.Element[] => {
                     latitude: Math.round(event.mapPoint.latitude * 10000) / 10000,
                     longitude: Math.round(event.mapPoint.longitude * 10000) / 10000
                 }
-                console.log(coord)
             })
 
             view.popup.viewModel.on("trigger-action", function(event) {
@@ -36,15 +56,57 @@ const Layers : Function = (props: LayerProps) : JSX.Element[] => {
                 const attributes = view.popup.viewModel.selectedFeature.attributes
                 ACTION[id as keyof typeof ACTION](attributes, coord)
             });
+            
+            view.on("layerview-create", (event) => {
+                const featureLayer = event.layer as __esri.FeatureLayer
+
+                if(featureLayer.popupTemplate === undefined) return 
+
+                console.log("CREATE", event.layer.id)
+                         
+            })
+
+            view.on("layerview-destroy", (event) => {
+                const featureLayer = event.layer as __esri.FeatureLayer
+
+                if(featureLayer.popupTemplate === undefined) return 
+
+                console.log("DESTROY", event.layer.id)
+                
+            })
+            
+        
         })
 
     }, [ props.view ])
 
-    return props.data.map((properties, index) => 
-        (properties.myType === "group-layer")
-        ? <GroupLayer key={index} id={Math.random()} map={props.map} groupLayerProperties={properties} />
-        : <FeatureLayer key={index} id={Math.random()} map={props.map} featureLayerProperties={properties} />
-    )
+    return <FeatureLayers id={generateId()} layers={props.data} map={props.map} />
 }
 
 export default Layers
+
+
+/*
+
+const getDataFeature = (layer: __esri.FeatureLayer) => new Promise((resolve: {(x: __esri.FeatureSet): void}, reject) => {
+    if(layer){
+        props.view?.whenLayerView(layer).then((layerView) => {
+            layerView.queryFeatures().then((features) => resolve(features))
+        })
+    }else{
+        reject("NOT EXIST")
+    }
+})
+
+const getFeatures = ids.map(id => {
+    const layer = props.map?.findLayerById(id) as __esri.FeatureLayer
+    return getDataFeature(layer)
+})
+
+
+Promise.all(getFeatures).then((value) => {
+    console.log("Features", value)
+
+}).catch((e) => {console.log(e)})
+
+*/

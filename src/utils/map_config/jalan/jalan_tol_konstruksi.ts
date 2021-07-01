@@ -1,9 +1,10 @@
 import { env } from '../../../../env'
+import { LAYER } from '../../constants';
 import { ACTION_ID } from '../jalan';
 
 const PATH = env.geoSvrUrl + "geoserver/gsr/services/temanjabar/FeatureServer/4/"
-const LAYER_ID = "rjtk"
-const TITLE = "Ruas Jalan Tol (Konstruksi)"
+const LAYER_ID = LAYER.JALAN_TOL_KONSTRUKSI.id
+const TITLE = LAYER.JALAN_TOL_KONSTRUKSI.title
 
 const prepSVAction : __esri.ActionButtonProperties = {
     type: "button",

@@ -1,9 +1,10 @@
 import { env } from '../../../../env'
+import { LAYER } from '../../constants';
 import { ACTION_ID } from '../jalan';
 
 const PATH = env.geoSvrUrl + "geoserver/gsr/services/temanjabar/FeatureServer/0/"
-const LAYER_ID = "rjp"
-const TITLE = "Ruas Jalan Provinsi"
+const LAYER_ID = LAYER.JALAN_PROVINSI.id
+const TITLE = LAYER.JALAN_PROVINSI.title
 
 const prepSVAction : __esri.ActionButtonProperties = {
     type: "button",
@@ -94,4 +95,13 @@ export const jalanProvinsiConfig : __esri.FeatureLayerProperties = {
     outFields: ["*"],
     popupTemplate: popUpTemplate,
     renderer: renderer
+}
+
+
+// --- Search
+const jalanProvinsiSource: __esri.LayerSearchSourceProperties = {
+    name: TITLE,
+    layer: jalanProvinsiConfig,
+    searchFields: ["nm_ruas"],
+    displayField: "nm_ruas"
 }

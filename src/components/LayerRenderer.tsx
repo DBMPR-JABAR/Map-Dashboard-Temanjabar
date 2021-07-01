@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { addLayer, selectFeature, setLayer } from "../features/featureSlice";
+import { useAppSelector } from "../app/hooks";
+import { selectFeature } from "../features/featureSlice";
 import Layers from "./Layers";
 import { KEGIATAN, NEED_API_REQUEST, Tanggal } from "../utils/constants";
 import * as _ from "lodash";
@@ -83,9 +83,9 @@ const LayerRenderer : React.FC<RendererProps> = (props: RendererProps) => {
         //     isMounted = false
         // }
 
-    }, [ features ])
+    }, [ features.kegiatan, features.sup, features.tanggal, features.uptd ])
 
-    return <Layers map={props.map} view={props.view} data={data} />
+    return <Layers map={props.map} view={props.view} data={data} features={features} />
 }
 
 export default LayerRenderer
@@ -108,7 +108,10 @@ const renderWMS : {[k: string] : (uptd: string[], sup: string[], tanggal: Tangga
         const uptdNum = _.join(_.map(uptd, (value) => value.charAt(4)), ',')
         let query = (!_.isEmpty(uptd)) ? `uptd IN (${uptdNum})` : ''
         jalanProvinsiConfig.definitionExpression = query
-        ruasJalanLayerConfig.layers?.push(jalanProvinsiConfig)
+
+        if(ruasJalanLayerConfig.layers?.indexOf(jalanProvinsiConfig) === -1){
+            ruasJalanLayerConfig.layers?.push(jalanProvinsiConfig)
+        }
         
         return ruasJalanLayerConfig
     },
