@@ -2,10 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../app/store'
 import * as _ from 'lodash'
 import { HAS_TANGGAL, Tanggal } from '../utils/constants'
-import { FeatureSetMap } from '../components/Layers'
+import { CustomSearchSource } from '../components/Layers'
 
 export interface FeatureState {
-    featureLayer: FeatureSetMap[]
+    featureLayer: CustomSearchSource[]
     uptd: string[]
     sup: string[]
     kegiatan: string[],
@@ -28,10 +28,10 @@ export const featureSlice = createSlice({
     name: 'esri',
     initialState,
     reducers: {
-        addLayer: (state, action: PayloadAction<FeatureSetMap>) => {
+        addLayer: (state, action: PayloadAction<CustomSearchSource>) => {
             state.featureLayer.push(action.payload)
         },
-        setLayer: (state, action: PayloadAction<FeatureSetMap[]>) => {
+        setLayer: (state, action: PayloadAction<CustomSearchSource[]>) => {
             state.featureLayer = action.payload
         },
         removeLayer: (state, action: PayloadAction<string>) => {

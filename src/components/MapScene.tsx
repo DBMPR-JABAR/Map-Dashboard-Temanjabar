@@ -42,8 +42,7 @@ function MapScene() {
                 <LayerList view={view} position={{ position: "bottom-right" }} />
                 <Legends view={view} position={{ position: "bottom-left" }} />
                 <SearchWidget view={view} position={{ position: "top-left", index: 0 }} />
-                <SearchSource view={view} />
-
+                
             </EsriMap>
         </>
     )

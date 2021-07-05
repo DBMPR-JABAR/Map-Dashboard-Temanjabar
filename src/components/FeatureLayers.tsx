@@ -5,6 +5,7 @@ import * as _ from "lodash"
 type FeatureLayersProps = {
     layers: __esri.LayerProperties[]
     map: __esri.Map | null,
+    view: __esri.MapView | __esri.SceneView | null,
     id: string
 }
 
@@ -23,13 +24,7 @@ const FeatureLayers : React.FC<FeatureLayersProps> = (props: FeatureLayersProps)
         loadModules(['esri/layers/FeatureLayer',
                      'esri/layers/GroupLayer']).then(([FeatureLayer, GroupLayer]) => {
 
-            console.log("ID", props.id)
-            console.log("STORED LAYERS", layer)
-            console.log("ALL LAYERS", props.layers)
-
             const deletePlease = _.difference(layer, props.layers)
-
-            console.log("DELETE PLEASE", deletePlease)
 
             deletePlease.forEach((layerProp) => {
                 const rendererdLayer = props.map?.findLayerById(layerProp.id!)
@@ -64,7 +59,7 @@ const FeatureLayers : React.FC<FeatureLayersProps> = (props: FeatureLayersProps)
 
         }).catch((err) => console.error(err))
 
-    }, [props.layers])
+    }, [props.view, props.layers])
 
     return null
 }

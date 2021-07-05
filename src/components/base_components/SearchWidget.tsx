@@ -20,7 +20,9 @@ const SearchWidget : React.FC<LegendsProps> = (props: LegendsProps) => {
                 
                 const mSearchWidget = new Search({
                     view: props.view,
-                    id: SEARCH_WIDGET_ID
+                    id: SEARCH_WIDGET_ID,
+                    includeDefaultSources: false,
+                    allPlaceholder: "Cari..."
                 })
     
                 setSearchWidget(mSearchWidget)

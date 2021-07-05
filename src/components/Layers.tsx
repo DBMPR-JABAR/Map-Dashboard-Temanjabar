@@ -5,6 +5,7 @@ import { addLayer, FeatureState, removeLayer, setLayer } from "../features/featu
 import { Coordinate } from "../utils/constants"
 import ACTION from "../utils/popupAction"
 import FeatureLayers from "./FeatureLayers"
+import SearchSource from "./SearchSource"
 
 type LayerProps = {
     map: __esri.Map | null
@@ -13,10 +14,13 @@ type LayerProps = {
     features: FeatureState
 }
 
-export type FeatureSetMap = {
+export type CustomSearchSource = {
     id: string
+    name: string
+    placeholder: string
+    searchField: string
     layer: __esri.FeatureLayer
-    features: __esri.FeatureSet
+    graphics: __esri.Graphic[]
 }
 
 const Layers : React.FC<LayerProps> = (props: LayerProps) => {
@@ -25,11 +29,9 @@ const Layers : React.FC<LayerProps> = (props: LayerProps) => {
     const generateId = () => {
         const features = props.features
 
-        const salt = Math.random()
         const uptdString = features.uptd.join('')
         const supString = features.sup.join('')
         const tglString = `${features.tanggal.mulai}${features.tanggal.sampai}`
-        const kegiatan = features.kegiatan.join('')
 
         const string = `${uptdString}${supString}${tglString}`
 
@@ -61,14 +63,19 @@ const Layers : React.FC<LayerProps> = (props: LayerProps) => {
 
                 if(featureLayer.searchField === undefined) return 
 
-                featureLayer.queryFeatures().then((features) => {
-                    const map : FeatureSetMap = {
+                featureLayer.queryFeatures().then((featureSet) => {
+                    const map : CustomSearchSource = {
                         id: featureLayer.id, 
                         layer: featureLayer,
-                        features: features
+                        graphics: featureSet.features,
+                        name: featureLayer.title,
+                        placeholder: featureLayer.title,
+                        searchField: featureLayer.searchField!
                     }
+                    console.log("MAP", map)
+
                     dispatch(addLayer(map))
-                })
+                }).catch((error) => console.log(error))
 
             })
 
@@ -85,33 +92,10 @@ const Layers : React.FC<LayerProps> = (props: LayerProps) => {
 
     }, [ props.view ])
 
-    return <FeatureLayers id={generateId()} layers={props.data} map={props.map} />
+    return <>
+        <FeatureLayers id={generateId()} layers={props.data} map={props.map} view={props.view} />
+        <SearchSource id={generateId()} view={props.view} />
+    </>
 }
 
 export default Layers
-
-
-/*
-
-const getDataFeature = (layer: __esri.FeatureLayer) => new Promise((resolve: {(x: __esri.FeatureSet): void}, reject) => {
-    if(layer){
-        props.view?.whenLayerView(layer).then((layerView) => {
-            layerView.queryFeatures().then((features) => resolve(features))
-        })
-    }else{
-        reject("NOT EXIST")
-    }
-})
-
-const getFeatures = ids.map(id => {
-    const layer = props.map?.findLayerById(id) as __esri.FeatureLayer
-    return getDataFeature(layer)
-})
-
-
-Promise.all(getFeatures).then((value) => {
-    console.log("Features", value)
-
-}).catch((e) => {console.log(e)})
-
-*/
