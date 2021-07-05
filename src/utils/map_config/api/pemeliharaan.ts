@@ -5,7 +5,7 @@ const TITLE = "Pemeliharaan"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `http://localhost:8080/assets/images/marker/pemeliharaan.png`
+const ICON = `${env.baseUrl}assets/images/marker/pemeliharaan.png`
 
 
 export type Pemeliharaan = {

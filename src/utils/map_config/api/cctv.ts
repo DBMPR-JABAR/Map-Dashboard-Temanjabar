@@ -6,7 +6,7 @@ export const ACTION_ID = "prep-vid"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `http://localhost:8080/assets/images/marker/cctv.png`
+const ICON = `${env.baseUrl}assets/images/marker/cctv.png`
 
 export type Cctv = {
     ID: number,
