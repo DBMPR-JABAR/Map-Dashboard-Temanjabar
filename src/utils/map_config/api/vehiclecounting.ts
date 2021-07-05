@@ -1,8 +1,7 @@
 import { env } from "../../../../env"
-import { LAYER } from "../../constants"
 
-const LAYER_ID = LAYER.VEHICLE_COUNTING.id
-const TITLE = LAYER.VEHICLE_COUNTING.title
+const LAYER_ID = "tx_vc"
+const TITLE = "Vehicle Counting"
 
 const ACTION_ID = "prep-vid"
 
@@ -347,6 +346,7 @@ export const renderVehicleCounting = (items: VehicleCounting[]) : __esri.Feature
     
     return  {
         myType: "feature-layer",
+        searchField: "LOKASI",
         title: TITLE,
         id: LAYER_ID,
         outFields: ["*"],

@@ -17,9 +17,10 @@ const SearchSource : React.FC<SearchSourceProps> = (props: SearchSourceProps) =>
         props.view?.when(() => {
             const searchWidget = props.view?.ui.find(SEARCH_WIDGET_ID) as __esri.widgetsSearch
             if(searchWidget){
-                searchWidget.allPlaceholder = "ASASAS"
-            }
 
+                
+
+            }
         })
 
     }, [layer])

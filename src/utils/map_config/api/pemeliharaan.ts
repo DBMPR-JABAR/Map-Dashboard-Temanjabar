@@ -1,8 +1,7 @@
 import { env } from "../../../../env"
-import { LAYER } from "../../constants"
 
-const LAYER_ID = LAYER.PEMELIHARAAN.id
-const TITLE = LAYER.PEMELIHARAAN.title
+const LAYER_ID = "tx_pemeliharaan"
+const TITLE = "Pemeliharaan"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
@@ -251,6 +250,7 @@ export const renderPemeliharaan = (items: Pemeliharaan[]) : __esri.FeatureLayerP
 
     return  {
         myType: "feature-layer",
+        searchField: "RUAS_JALAN",
         title: TITLE,
         id: LAYER_ID,
         outFields: ["*"],

@@ -1,4 +1,4 @@
-import  { useState, useEffect, FunctionComponent } from 'react'
+import * as React from 'react'
 import { loadModules } from 'esri-loader'
 import { useAppSelector } from '../../app/hooks'
 import { selectFeature } from '../../features/featureSlice'
@@ -9,30 +9,29 @@ export type LegendsProps = {
     position: __esri.UIAddPosition
 }
 
-const SearchWidget : FunctionComponent<LegendsProps> = (props: LegendsProps) => {
-    const [searchWidget, setSearchWidget] = useState(null)
+const SearchWidget : React.FC<LegendsProps> = (props: LegendsProps) => {
+    const [searchWidget, setSearchWidget] = React.useState(null)
     const isLayerDisplayed = useAppSelector(selectFeature).kegiatan.length > 0
-    // const layers = useAppSelector(selectFeature).featureLayer
-
     
-    useEffect(() => {
+    React.useEffect(() => {
 
-        loadModules(["esri/widgets/Search", "esri/layers/FeatureLayer"]).then(([Search, FeatureLayer]) => {
+        props.view?.when(() => {
+            loadModules(["esri/widgets/Search", "esri/layers/FeatureLayer"]).then(([Search, FeatureLayer]) => {
+                
+                const mSearchWidget = new Search({
+                    view: props.view,
+                    id: SEARCH_WIDGET_ID
+                })
+    
+                setSearchWidget(mSearchWidget)
+    
+                if(isLayerDisplayed){
+                    props.view?.ui.add(mSearchWidget!, props.position)
+                }
 
-            const mSearchWidget = new Search({
-                view: props.view,
-                id: SEARCH_WIDGET_ID
-            })
+            }).catch((err) => console.error(err))
+        })
 
-            setSearchWidget(mSearchWidget)
-
-            if(isLayerDisplayed){
-                props.view?.ui.add(mSearchWidget!, props.position)
-            }
-
-            // console.log("FeatureLayer Initialized", layers)
-            
-        }).catch((err) => console.error(err))
 
         return function cleanup() {
             props.view?.ui.remove(searchWidget!)

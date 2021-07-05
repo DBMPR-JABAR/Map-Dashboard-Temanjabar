@@ -1,8 +1,7 @@
 import { env } from "../../../../env"
-import { LAYER } from "../../constants"
 
-const LAYER_ID = LAYER.CCTV.id
-const TITLE = LAYER.CCTV.title
+const LAYER_ID = "tx_cctv"
+const TITLE = "CCTV"
 export const ACTION_ID = "prep-vid"
 
 const GEOM_TYPE = "point"
@@ -195,6 +194,7 @@ export const renderCctv = (items: Cctv[]) : __esri.FeatureLayerProperties => {
 
     return  {
         myType: "feature-layer",
+        searchField: "LOKASI",
         title: TITLE,
         id: LAYER_ID,
         outFields: ["*"],

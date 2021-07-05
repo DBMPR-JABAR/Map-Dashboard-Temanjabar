@@ -1,10 +1,9 @@
 import { env } from '../../../../env'
-import { LAYER } from '../../constants';
 import { ACTION_ID } from '../jalan';
 
 const PATH = env.geoSvrUrl + "geoserver/gsr/services/temanjabar/FeatureServer/2/"
-const LAYER_ID = LAYER.JALAN_NASIONAL.id
-const TITLE = LAYER.JALAN_NASIONAL.title
+const LAYER_ID = "rjn"
+const TITLE = "Ruas Jalan Nasional"
 
 const prepSVAction : __esri.ActionButtonProperties = {
     type: "button",
@@ -65,6 +64,7 @@ const renderer: __esri.SimpleRendererProperties = {
 
 export const jalanNasionalConfig  : __esri.FeatureLayerProperties  = {
     myType: "feature-layer",
+    searchField: "NAMA_SK",
     url: PATH,
     customParameters: {
         ak: env.authKey

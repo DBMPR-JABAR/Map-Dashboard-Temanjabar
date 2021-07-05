@@ -1,8 +1,7 @@
 import { env } from "../../../../env"
-import { LAYER } from "../../constants"
 
-const LAYER_ID = LAYER.TITIK_RAWAN_BENCANA.id
-const TITLE = LAYER.TITIK_RAWAN_BENCANA.title
+const LAYER_ID = "tx_rawan_bencana"
+const TITLE = "Titik Rawan Bencana"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
@@ -229,6 +228,7 @@ export const renderRawanBencana = (items: RawanBencana[], icons: IconRawanBencan
 
     return  {
         myType: "feature-layer",
+        searchField: "RUAS_JALAN",
         title: TITLE,
         id: LAYER_ID,
         outFields: ["*"],

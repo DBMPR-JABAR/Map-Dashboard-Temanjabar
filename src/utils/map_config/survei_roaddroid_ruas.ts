@@ -1,10 +1,9 @@
 import { env } from '../../../env'
-import { LAYER } from '../constants';
 import { ACTION_ID } from './jalan';
 
 const PATH = env.geoSvrUrl + "geoserver/gsr/services/temanjabar/FeatureServer/6/"
-const LAYER_ID = LAYER.SURVEI_ROADDROID_RUAS.id
-const TITLE = LAYER.SURVEI_ROADDROID_RUAS.title
+const LAYER_ID = "rjp_skj"
+const TITLE = "Hasil Survei Kondisi Jalan"
 
 const prepSVAction : __esri.ActionButtonProperties = {
     type: "button",
@@ -128,6 +127,7 @@ const renderer: __esri.UniqueValueRendererProperties = {
 
 export const surveiRoaddroidRuasConfig : __esri.FeatureLayerProperties = {
     myType: "feature-layer",
+    searchField: "nm_ruas",
     url: PATH,
     customParameters: {
         ak: env.authKey

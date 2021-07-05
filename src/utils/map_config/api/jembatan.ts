@@ -1,8 +1,7 @@
 import { env } from "../../../../env"
-import { LAYER } from "../../constants"
 
-const LAYER_ID = LAYER.JEMBATAN.id
-const TITLE = LAYER.JEMBATAN.title
+const LAYER_ID = "tx_jembatan"
+const TITLE = "Jembatan"
 export const ACTION_ID = "prep-img"
 
 const GEOM_TYPE = "point"
@@ -191,6 +190,7 @@ export const renderJembatan = (items: Jembatan[]) : __esri.FeatureLayerPropertie
     
     return  {
         myType: "feature-layer",
+        searchField: "NAMA_JEMBATAN",
         title: TITLE,
         id: LAYER_ID,
         outFields: ["*"],

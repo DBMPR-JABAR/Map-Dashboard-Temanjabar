@@ -1,8 +1,7 @@
 import { env } from "../../../../env"
-import { LAYER } from "../../constants"
 
-const LAYER_ID = LAYER.LAPORAN_MASYARAKAT.id
-const TITLE = LAYER.LAPORAN_MASYARAKAT.title
+const LAYER_ID = "tx_laporan_masyarakat"
+const TITLE = "Laporan Masyarakat"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
@@ -226,6 +225,7 @@ export const renderLaporanMasyarakat = (items: LaporanMasyarakat[]) : __esri.Fea
 
     return  {
         myType: "feature-layer",
+        searchField: "alamat",
         title: TITLE,
         id: LAYER_ID,
         outFields: ["*"],

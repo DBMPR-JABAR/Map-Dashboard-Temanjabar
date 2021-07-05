@@ -1,7 +1,7 @@
 import * as _ from "lodash"
 import * as React from "react"
 import { useAppDispatch } from "../app/hooks"
-import { FeatureState, setLayer } from "../features/featureSlice"
+import { addLayer, FeatureState, removeLayer, setLayer } from "../features/featureSlice"
 import { Coordinate } from "../utils/constants"
 import ACTION from "../utils/popupAction"
 import FeatureLayers from "./FeatureLayers"
@@ -16,6 +16,7 @@ type LayerProps = {
 export type FeatureSetMap = {
     id: string
     layer: __esri.FeatureLayer
+    features: __esri.FeatureSet
 }
 
 const Layers : React.FC<LayerProps> = (props: LayerProps) => {
@@ -34,8 +35,6 @@ const Layers : React.FC<LayerProps> = (props: LayerProps) => {
 
         return btoa(string)
     }
-
-    const [id, setId] = React.useState<string>("")
 
     React.useEffect(() => {
 
@@ -60,19 +59,25 @@ const Layers : React.FC<LayerProps> = (props: LayerProps) => {
             view.on("layerview-create", (event) => {
                 const featureLayer = event.layer as __esri.FeatureLayer
 
-                if(featureLayer.popupTemplate === undefined) return 
+                if(featureLayer.searchField === undefined) return 
 
-                console.log("CREATE", event.layer.id)
-                         
+                featureLayer.queryFeatures().then((features) => {
+                    const map : FeatureSetMap = {
+                        id: featureLayer.id, 
+                        layer: featureLayer,
+                        features: features
+                    }
+                    dispatch(addLayer(map))
+                })
+
             })
 
             view.on("layerview-destroy", (event) => {
                 const featureLayer = event.layer as __esri.FeatureLayer
 
-                if(featureLayer.popupTemplate === undefined) return 
-
-                console.log("DESTROY", event.layer.id)
+                if(featureLayer.searchField === undefined) return 
                 
+                dispatch(removeLayer(featureLayer.id))
             })
             
         

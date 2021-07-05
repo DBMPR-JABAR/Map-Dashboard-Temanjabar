@@ -14,6 +14,7 @@ import Filter from "./base_components/Filter"
 import ViewToggleButton from "./base_components/ViewToggleButton"
 import LayerRenderer from "./LayerRenderer"
 import SearchWidget from "./base_components/SearchWidget"
+import SearchSource from "./SearchSource"
 
 function MapScene() {
     const mapType = useAppSelector(selectView).type
@@ -41,7 +42,8 @@ function MapScene() {
                 <LayerList view={view} position={{ position: "bottom-right" }} />
                 <Legends view={view} position={{ position: "bottom-left" }} />
                 <SearchWidget view={view} position={{ position: "top-left", index: 0 }} />
-                
+                <SearchSource view={view} />
+
             </EsriMap>
         </>
     )
