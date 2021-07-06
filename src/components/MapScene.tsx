@@ -24,8 +24,6 @@ function MapScene() {
 
     const handleError = (e: any) => console.log(e)
 
-    console.log(process.env.MODE)
-
     return (
         <>
             <EsriMap

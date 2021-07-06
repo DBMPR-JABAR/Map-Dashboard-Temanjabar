@@ -8,7 +8,8 @@ import getSUP from "../features/request/SupAPI"
 
 import { uptdOptions, kegiatanOptions } from "../utils/options";
 import type { SelectOption } from '../utils/options'
-import { Tanggal } from "../utils/constants";
+import { HAS_TANGGAL, Tanggal } from "../utils/constants";
+import * as _ from "lodash";
 
 const customStyles: Partial<Styles<SelectOption, true, GroupTypeBase<SelectOption>>> | undefined = {
  
@@ -77,7 +78,14 @@ const FilterSelection : React.FC = () => {
 
     const handleKegiatanChange = (value: OptionsType<SelectOption>) => {
         setKegiatanValue(value)
-        
+        const kegiatanArr = value.map(kegiatan => kegiatan.value)
+
+        if(_.isEmpty(_.intersection(kegiatanArr, HAS_TANGGAL))){
+            setTglValue({...tglValue, displayed: false})
+        }else{
+            setTglValue({...tglValue, displayed: true})
+        }
+
         btnTrigger(sppValue, value)
     }
 
@@ -111,7 +119,7 @@ const FilterSelection : React.FC = () => {
                     styles={customStyles} placeholder="Pilih SUP" />
         </div>
         <div className="form-group mt-2">
-            <label htmlFor="uptd">Kegiatan: </label>
+            <label htmlFor="uptd">Filter: </label>
             <Select options={kegiatanOptions} isMulti isSearchable styles={customStyles}
                     placeholder="Pilih Kegiatan"
                     value={kegiatanValue}  onChange={(value) => { handleKegiatanChange(value) }} />

@@ -72,7 +72,6 @@ const Layers : React.FC<LayerProps> = (props: LayerProps) => {
                         placeholder: featureLayer.title,
                         searchField: featureLayer.searchField!
                     }
-                    console.log("MAP", map)
 
                     dispatch(addLayer(map))
                 }).catch((error) => console.log(error))
