@@ -109,7 +109,7 @@ const FilterSelection : React.FC = () => {
     return <>
         <div className="form-group mt-2">
             <label htmlFor="uptd">UPTD: </label>
-            <Select options={uptdOptions} isMulti isSearchable placeholder="Pilih UPTD"
+            <Select options={uptdOptions()} isMulti isSearchable placeholder="Pilih UPTD"
                     value={uptdValue}  onChange={(value) => { handleUPTDChange(value) }} />
         </div>
         <div className="form-group mt-2">
@@ -120,7 +120,7 @@ const FilterSelection : React.FC = () => {
         </div>
         <div className="form-group mt-2">
             <label htmlFor="uptd">Filter: </label>
-            <Select options={kegiatanOptions} isMulti isSearchable styles={customStyles}
+            <Select options={kegiatanOptions()} isMulti isSearchable styles={customStyles}
                     placeholder="Pilih Kegiatan"
                     value={kegiatanValue}  onChange={(value) => { handleKegiatanChange(value) }} />
         </div>
