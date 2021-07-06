@@ -1,8 +1,5 @@
 import * as React from "react"
 import MapFloatingButton from "./MapFloatingButton"
-import { env } from "../../../env"
-import { loadModules } from "esri-loader"
-import OffsetCanvasButton from "./OffsetCanvasButton"
 
 type ControlButtonProps = {
     view: __esri.MapView | __esri.SceneView | null,
