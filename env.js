@@ -1,7 +1,7 @@
 const env = {
     // baseUrl: "https://tj.temanjabar.net/",
-    // baseUrl: "http://localhost:8000/",
-    baseUrl: "http://124.81.122.132/temanjabar/public/",
+    baseUrl: "http://localhost:8000/",
+    // baseUrl: "http://124.81.122.132/temanjabar/public/",
 
     geoSvrUrl: "http://124.81.122.131:8080/",
 

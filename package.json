@@ -4,10 +4,12 @@
   "description": "Map Dashboard TemanJabar",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development",
-    "build": "xcopy .\\public\\assets\\ .\\deploy\\assets\\ /E && webpack --mode production --progress",
-    "serve": "webpack serve --mode development"
+    "build-uptd": "set MODE=uptd&& webpack --mode production --progress",
+    "build-masyarakat": "set MODE=masyarakat&& webpack --mode production --progress",
+    "build-internal": "set MODE=internal&& webpack --mode production --progress",
+    "build-all": "npm run build-uptd && npm run build-masyarakat && npm run build-internal",
+    "serve": "set MODE=internal&& webpack serve --mode development"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.6",
     "csstype": "^3.0.8",
+    "dotenv-webpack": "^7.0.3",
     "html-webpack-plugin": "^5.3.1",
     "lodash": "^4.17.21",
     "prop-types": "^15.7.2",

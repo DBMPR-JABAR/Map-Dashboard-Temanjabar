@@ -5,7 +5,7 @@ const TITLE = "Pemeliharaan"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `${env.baseUrl}assets/images/marker/pemeliharaan.png`
+const ICON = `${process.env.BASE_URL}assets/images/marker/pemeliharaan.png`
 
 
 export type Pemeliharaan = {
@@ -127,7 +127,7 @@ const popupTemplate : __esri.PopupTemplateProperties = {
             outFields: ["*"],
             creator: function(feature : any) {
                 var id = feature.graphic.attributes.ID_PEK;
-                return `<a class="btn btn-primary text-white mb-4" href="${env.baseUrl}/pemeliharaan/pekerjaan/${id}" target="_blank">
+                return `<a class="btn btn-primary text-white mb-4" href="${process.env.BASE_URL}/pemeliharaan/pekerjaan/${id}" target="_blank">
                         Lihat Detail Pekerjaan</a>`;
             }
         }

@@ -109,7 +109,7 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                 type: "image",
                 altText: "Foto Tidak Ada",
                 value: {
-                    sourceURL: `${env.baseUrl}/storage/{FOTO}`
+                    sourceURL: `${process.env.BASE_URL}/storage/{FOTO}`
                 }
             }]
         }
@@ -199,7 +199,7 @@ const renderer = (icons: IconRawanBencana[]) : __esri.UniqueValueRendererPropert
         value: data.ICON_NAME,
         symbol: {
             type: "picture-marker",
-            url: `${env.baseUrl}/storage/${data.ICON_IMAGE}`,
+            url: `${process.env.BASE_URL}/storage/${data.ICON_IMAGE}`,
             width: "28px",
             height: "28px"
         } as __esri.PictureMarkerSymbolProperties

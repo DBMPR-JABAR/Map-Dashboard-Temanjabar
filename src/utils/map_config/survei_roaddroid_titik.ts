@@ -1,7 +1,7 @@
 import { env } from '../../../env'
 import { ACTION_ID } from './jalan';
 
-const PATH = env.geoSvrUrl + "geoserver/gsr/services/temanjabar/FeatureServer/7/"
+const PATH = process.env.GEOSERVER_URL + "geoserver/gsr/services/temanjabar/FeatureServer/7/"
 const LAYER_ID = "rjp_skj_titik"
 const TITLE = "Hasil Survei Kondisi Jalan (Titik)"
 
@@ -107,7 +107,7 @@ export const surveiRoaddroidTitikConfig : __esri.FeatureLayerProperties = {
     myType: "feature-layer",
     url: PATH,
     customParameters: {
-        ak: env.authKey
+        ak: process.env.GEOSERVER_KEY
     },
     title: TITLE,
     id: LAYER_ID,

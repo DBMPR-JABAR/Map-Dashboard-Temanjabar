@@ -5,7 +5,7 @@ const TITLE = "Laporan Masyarakat"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `${env.baseUrl}assets/images/marker/jembatan.png`
+const ICON = `${process.env.BASE_URL}assets/images/marker/jembatan.png`
 
 
 export type LaporanMasyarakat = {
@@ -112,7 +112,7 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                 type: "image",
                 altText: "Foto Tidak Ada",
                 value: {
-                    sourceURL: `${env.baseUrl}/storage/{gambar}`
+                    sourceURL: `${process.env.BASE_URL}/storage/{gambar}`
                 }
             }]
         }

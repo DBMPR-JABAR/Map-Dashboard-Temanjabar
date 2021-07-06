@@ -17,7 +17,7 @@ const ControlButton : React.FC<ControlButtonProps> = (props: ControlButtonProps)
         }
         return document.documentElement.requestFullscreen()
     }
-    const back = () => {window.location.href = env.baseUrl+"admin"}
+    const back = () => {window.location.href = process.env.BASE_URL+"admin"}
 
     React.useEffect(() => {
         const fullScreenBtn : HTMLElement | null = document.querySelector("#fullScreenBtn")

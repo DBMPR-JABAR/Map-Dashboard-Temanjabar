@@ -110,7 +110,7 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                 type: "image",
                 altText: "Foto Tidak Ada",
                 value: {
-                    sourceURL: `${env.baseUrl}/storage/{FOTO}`
+                    sourceURL: `${process.env.BASE_URL}/storage/{FOTO}`
                 }
             }]
         },
@@ -125,7 +125,7 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                     html += `
                     <div class="esri-feature-media__item">
                         <video controls class="esri-feature-media__item">
-                            <source src="${env.baseUrl}/storage/${video}" type="video/mp4">
+                            <source src="${process.env.BASE_URL}/storage/${video}" type="video/mp4">
                         </video>
                     </div>`;
                 }
@@ -218,7 +218,7 @@ const renderer = (icons: IconLaporanBencana[]) : __esri.UniqueValueRendererPrope
         value: data.KETERANGAN,
         symbol: {
             type: "picture-marker",
-            url: `${env.baseUrl}/storage/${data.ICON_IMAGE}`,
+            url: `${process.env.BASE_URL}/storage/${data.ICON_IMAGE}`,
             width: "28px",
             height: "28px"
         } as __esri.PictureMarkerSymbolProperties

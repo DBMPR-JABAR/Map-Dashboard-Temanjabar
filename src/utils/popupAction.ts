@@ -22,7 +22,7 @@ let ACTION : {[a: string]: (attibute: any, position: Coordinate) => void } = {
         const vidElem = document.getElementById('imgjembatan');
         fotoArr.forEach((foto: string) => {
             vidElem!.innerHTML += `
-                <img src="${env.baseUrl}/storage/${foto}"/>
+                <img src="${process.env.BASE_URL}/storage/${foto}"/>
             `;
         });
         document.querySelector('div.esri-popup__action[title="Lihat Foto"]')?.remove()

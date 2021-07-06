@@ -1,7 +1,7 @@
 import { env } from '../../../../env'
 import { ACTION_ID } from '../jalan';
 
-const PATH = env.geoSvrUrl + "geoserver/gsr/services/temanjabar/FeatureServer/4/"
+const PATH = process.env.GEOSERVER_URL + "geoserver/gsr/services/temanjabar/FeatureServer/4/"
 const LAYER_ID = "rjtk"
 const TITLE = "Ruas Jalan Tol (Konstruksi)"
 
@@ -55,10 +55,10 @@ const renderer: __esri.SimpleRendererProperties = {
 
 export const jalanTolKonstruksiConfig : __esri.FeatureLayerProperties = {
     myType: "feature-layer",
-    searchField: "Nama",
+    searchField: "nama",
     url: PATH,
     customParameters: {
-        ak: env.authKey
+        ak: process.env.GEOSERVER_KEY
     },
     title: TITLE,
     id: LAYER_ID,

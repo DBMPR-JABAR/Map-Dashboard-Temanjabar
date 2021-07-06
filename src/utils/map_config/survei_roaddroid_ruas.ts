@@ -1,7 +1,7 @@
 import { env } from '../../../env'
 import { ACTION_ID } from './jalan';
 
-const PATH = env.geoSvrUrl + "geoserver/gsr/services/temanjabar/FeatureServer/6/"
+const PATH = process.env.GEOSERVER_URL + "geoserver/gsr/services/temanjabar/FeatureServer/6/"
 const LAYER_ID = "rjp_skj"
 const TITLE = "Hasil Survei Kondisi Jalan"
 
@@ -24,7 +24,7 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
             div.className = "myClass";
             div.innerHTML = `<h5>Kode Ruas Jalan: ${id}</h5>
                             <iframe
-                                src="${env.baseUrl}/admin/monitoring/roadroid-survei-kondisi-jalan/${id}"
+                                src="${process.env.BASE_URL}/admin/monitoring/roadroid-survei-kondisi-jalan/${id}"
                                 title="W3Schools Free Online Web Tutorials"
                                 style="width:100%"/>
                             `;
@@ -130,7 +130,7 @@ export const surveiRoaddroidRuasConfig : __esri.FeatureLayerProperties = {
     searchField: "nm_ruas",
     url: PATH,
     customParameters: {
-        ak: env.authKey
+        ak: process.env.GEOSERVER_KEY
     },
     title: TITLE,
     id: LAYER_ID,
