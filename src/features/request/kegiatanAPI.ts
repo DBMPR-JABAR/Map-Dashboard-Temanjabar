@@ -1,5 +1,4 @@
 import axios from "axios"
-import { env } from "../../../env"
 import { Cctv } from "../../utils/map_config/api/cctv"
 import { Jembatan } from "../../utils/map_config/api/jembatan"
 import { IconLaporanBencana, LaporanBencana } from "../../utils/map_config/api/laporanbencana"

@@ -1,5 +1,3 @@
-import { env } from "../../../../env"
-
 const LAYER_ID = "tx_jembatan"
 const TITLE = "Jembatan"
 export const ACTION_ID = "prep-img"

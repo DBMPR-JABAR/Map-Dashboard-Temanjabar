@@ -1,5 +1,3 @@
-import { env } from "../../../../env"
-
 const LAYER_ID = "tx_vc"
 const TITLE = "Vehicle Counting"
 

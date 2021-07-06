@@ -1,5 +1,3 @@
-import { env } from "../../../../env"
-
 const LAYER_ID = "tx_rawan_bencana"
 const TITLE = "Titik Rawan Bencana"
 

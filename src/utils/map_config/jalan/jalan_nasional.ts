@@ -1,4 +1,3 @@
-import { env } from '../../../../env'
 import { ACTION_ID } from '../jalan';
 
 const PATH = process.env.GEOSERVER_URL + "geoserver/gsr/services/temanjabar/FeatureServer/2/"

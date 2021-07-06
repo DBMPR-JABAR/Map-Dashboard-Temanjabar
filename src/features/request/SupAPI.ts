@@ -1,6 +1,4 @@
 import axios from "axios"
-import { env } from "../../../env"
-
 
 export type SppData = {
     SUP: string,

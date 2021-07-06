@@ -1,5 +1,3 @@
-import { env } from "../../../../env"
-
 const LAYER_ID = "tx_cctv"
 const TITLE = "CCTV"
 export const ACTION_ID = "prep-vid"

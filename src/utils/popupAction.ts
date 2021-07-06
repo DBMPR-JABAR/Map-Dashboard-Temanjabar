@@ -1,5 +1,3 @@
-import { env } from "../../env";
-
 import { Coordinate } from "./constants";
 import { ACTION_ID as jalanAction } from "./map_config/jalan"
 import { ACTION_ID as jembatanAction } from "./map_config/api/jembatan"
