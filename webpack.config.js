@@ -1,28 +1,30 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const Dotenv = require('dotenv-webpack');
+
 const path = require("path")
-const { env } = require("./env")
 
 module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'public/index.html',
-      templateParameters: {
-        baseUrl: env.baseUrl
-      }
+      template: 'public/index.html'
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new Dotenv({
+      systemvars: true,
+    })
   ],
   entry: {
-    main: path.resolve(__dirname, './src/index.js'),
+    mapdashboard: path.resolve(__dirname, './src/index.tsx'),
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'deploy')
+    filename: `[name].${process.env.MODE}.js`,
+    path: path.resolve(__dirname, `deploy-${process.env.MODE}`)
   },
   devServer: {
     contentBase: './deploy',
-    open: true
+    open: true,
+    port:8080
   },
   module: {
     rules: [
@@ -36,14 +38,16 @@ module.exports = {
           }
         }
       },
-      { 
-        test: /\.css$/, 
-        use: ["style-loader", "css-loader"] 
-      },
-      { 
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource',
-      },
+      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource'},
+      { test: /\.tsx?$/, loader: 'ts-loader', exclude: '/node_modules/' },
     ]
   },
+  resolve: {
+    extensions: ['.ts', '.js', '.json', '.tsx'],
+    fallback: {
+      fs: false,
+      path: false,
+    },
+  }
 }
