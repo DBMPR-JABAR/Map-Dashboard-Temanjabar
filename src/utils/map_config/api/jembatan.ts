@@ -4,7 +4,7 @@ export const ACTION_ID = "prep-img"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `${process.env.BASE_URL}assets/images/marker/jembatan.png`
+const ICON = `${process.env.BASE_URL}/assets/images/marker/jembatan.png`
 
 export type Jembatan = {
     ID: number,

@@ -19,6 +19,10 @@ import { renderVehicleCounting } from "../utils/map_config/api/vehiclecounting";
 import { renderLaporanMasyarakat } from "../utils/map_config/api/laporanmasyarakat";
 import { renderLaporanBencana } from "../utils/map_config/api/laporanbencana";
 import { renderRawanBencana } from "../utils/map_config/api/rawanbencana";
+import { paketRuasConfig, paketTitikConfig } from "../utils/map_config/paket_pekerjaan";
+import { satuanPendidikanConfig } from "../utils/map_config/satuan_pendidikan";
+import { bantuanKeuanganConfig } from "../utils/map_config/bantuan_keuangan";
+import { rumijaConfig } from "../utils/map_config/rumija";
 
 export type RendererProps = {
     map: __esri.Map | null
@@ -78,11 +82,6 @@ const LayerRenderer : React.FC<RendererProps> = (props: RendererProps) => {
             isMounted = false
         })
 
-        // return () => {
-        //     setData([])
-        //     isMounted = false
-        // }
-
     }, [ features.kegiatan, features.sup, features.tanggal, features.uptd ])
 
     return <Layers map={props.map} view={props.view} data={data} features={features} />
@@ -135,5 +134,35 @@ const renderWMS : {[k: string] : (uptd: string[], sup: string[], tanggal: Tangga
     [KEGIATAN.KONDISI_JALAN_TITIK] : () => {
         return surveiRoaddroidTitikConfig
     },    
+    [KEGIATAN.PEKERJAAN] : (uptd, sup, tanggal) => {
+        const uptdNum = _.join(_.map(uptd, (value) => value.charAt(4)), ',')
+        let query = `uptd IN (${uptdNum}) AND (tgl_kontrak BETWEEN '${tanggal.mulai}' AND '${tanggal.sampai}')`
 
+        paketRuasConfig.definitionExpression = query
+        paketTitikConfig.definitionExpression = query
+
+        return {
+            myType: "group-layer",
+            id: "paket",
+            title: "Data Paket",
+            layers: [paketRuasConfig, paketTitikConfig]
+        } as __esri.GroupLayerProperties
+    },
+    [KEGIATAN.SATUAN_PENDIDIKAN] : () => {
+        return satuanPendidikanConfig
+    },
+    [KEGIATAN.BANKEU] : (uptd) => {
+        const uptdNum = _.join(_.map(uptd, (value) => `'${value}'`), ',')
+        let query = (!_.isEmpty(uptd)) ? `unor IN (${uptdNum})` : ''
+        bantuanKeuanganConfig.definitionExpression = query
+        
+        return bantuanKeuanganConfig
+    },
+    [KEGIATAN.RUMIJA] : (uptd) => {
+        // const uptdNum = _.join(_.map(uptd, (value) => `'${value.charAt(4)}'`), ',')
+        // let query = (!_.isEmpty(uptd)) ? `uptd IN (${uptdNum})` : ''
+        // rumijaConfig.definitionExpression = query
+        
+        return rumijaConfig
+    }
 }

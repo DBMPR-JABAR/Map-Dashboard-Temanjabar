@@ -12319,6 +12319,9 @@ declare namespace __esri {
      * [Read more...](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-Layer.html#title)
      */
     title: string;
+
+    myType?: "feature-layer" | "group-layer" | "outsource-layer"
+    
     /**
      * The layer type provides a convenient way to check the type of the layer without the need to import specific layer modules.
      *
@@ -12416,7 +12419,7 @@ declare namespace __esri {
   export const Layer: LayerConstructor;
 
   interface LayerProperties extends LoadableProperties {
-    myType?: "feature-layer" | "group-layer"
+    myType?: "feature-layer" | "group-layer" | "outsource-layer"
     /**
      * The full extent of the layer.
      *

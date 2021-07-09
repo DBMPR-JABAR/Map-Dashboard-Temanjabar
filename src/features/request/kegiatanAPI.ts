@@ -35,8 +35,7 @@ export type KegiatanResponse = {
 }
 
 const requestKegiatan = async (body: KegiatanRequest) => {
-    const requestUrl = process.env.BASE_URL + "api/map/dashboard/data"
-
+    const requestUrl = `${process.env.BASE_URL}/api/map/dashboard/data`
     const response = await axios.post<KegiatanResponse>(requestUrl, body)
     const data = response.data
 

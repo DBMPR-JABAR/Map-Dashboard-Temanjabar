@@ -1,8 +1,8 @@
-import { ACTION_ID } from '../jalan';
+import { ACTION_ID } from './jalan';
 
-const PATH = `${process.env.GEOSERVER_URL}/geoserver/gsr/services/temanjabar/FeatureServer/0/`
-const LAYER_ID = "rjp"
-const TITLE = "Ruas Jalan Provinsi"
+const PATH = `${process.env.GEOSERVER_URL}/geoserver/gsr/services/temanjabar/FeatureServer/17/`
+const LAYER_ID = "tx_rumija"
+const TITLE = "Ruang Milik Jalan"
 
 const prepSVAction : __esri.ActionButtonProperties = {
     type: "button",
@@ -12,61 +12,51 @@ const prepSVAction : __esri.ActionButtonProperties = {
 };
 
 const popUpTemplate : __esri.PopupTemplateProperties = {
-    title: "{nm_ruas}",
+    title: "{jenis_penggunaan}",
     content: [
         {
             type: "fields",
             fieldInfos: [
                 {
-                    fieldName: "IDruas",
-                    label: "Kode Ruas"
+                    fieldName: "nama",
+                    label: "Nama"
                 },
                 {
-                    fieldName: "expression/pemilik"
+                    fieldName: "alamat",
+                    label: "Alamat"
                 },
                 {
-                    fieldName: "LAT_AWAL",
-                    label: "Latitude 0"
+                    fieldName: "no_ijin",
+                    label: "Nomor Izin"
                 },
                 {
-                    fieldName: "LONG_AWAL",
-                    label: "Longitude 0"
+                    fieldName: "tanggal_ijin",
+                    label: "Tanggal Izin"
                 },
                 {
-                    fieldName: "LAT_AKHIR",
-                    label: "Latitude 1"
-                },
-                {
-                    fieldName: "LONG_AKHIR",
-                    label: "Longitude 1"
+                    fieldName: "ruas_jalan",
+                    label: "Ruas Jalan"
                 },
                 {
                     fieldName: "kab_kota",
                     label: "Kab/Kota"
                 },
                 {
-                    fieldName: "wil_uptd",
+                    fieldName: "uptd",
                     label: "UPTD"
                 },
                 {
-                    fieldName: "nm_sppjj",
-                    label: "SUP"
+                    fieldName: "luas",
+                    label: "Luas (m2)"
                 },
                 {
-                    fieldName: "sumber_data",
-                    label: "Sumber Data"
+                    fieldName: "jenis_penggunaan",
+                    label: "Jenis Penggunaan"
                 },
                 {
-                    fieldName: "sumber_tahun",
-                    label: "Tahun Data Diambil"
+                    fieldName: "uraian",
+                    label: "Uraian"
                 },
-                {
-                    fieldName: "expression/pjg_km",
-                },
-                                                {
-                    fieldName: "updated_date",
-                    label: "Terakhir Diperbarui"
-                }
             ]
         },
         {
@@ -109,26 +99,14 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
             }
         },
     ],
-    expressionInfos: [{
-            name: "pjg_km",
-            title: "Panjang Ruas (KM)",
-            expression: "Round($feature.pjg_ruas_m / 1000, 2)"
-        },
-        {
-            name: "pemilik",
-            title: "Status Jalan",
-            expression: `return "Jalan Provinsi Jawa Barat"`,
-        }
-
-    ],
     actions: [prepSVAction as __esri.ActionButton]
 }
 
-const symbol : __esri.SimpleLineSymbolProperties = {
-    type: "simple-line", 
-    color: "green",
-    width: "2px",
-    style: "solid",
+const symbol : __esri.PictureMarkerSymbolProperties = {
+    type: "picture-marker",
+    url: "http://localhost:8080/assets/images/marker/peningkatan.png",
+    width: "24px",
+    height: "24px"
 }
 
 const renderer: __esri.SimpleRendererProperties = {
@@ -136,9 +114,9 @@ const renderer: __esri.SimpleRendererProperties = {
     symbol: symbol
 }
 
-export const jalanProvinsiConfig : __esri.FeatureLayerProperties = {
+export const rumijaConfig  : __esri.FeatureLayerProperties  = {
     myType: "feature-layer",
-    searchField: "nm_ruas",
+    searchField: "uraian",
     url: PATH,
     customParameters: {
         ak: process.env.GEOSERVER_KEY
@@ -148,13 +126,4 @@ export const jalanProvinsiConfig : __esri.FeatureLayerProperties = {
     outFields: ["*"],
     popupTemplate: popUpTemplate,
     renderer: renderer
-}
-
-
-// --- Search
-const jalanProvinsiSource: __esri.LayerSearchSourceProperties = {
-    name: TITLE,
-    layer: jalanProvinsiConfig,
-    searchFields: ["nm_ruas"],
-    displayField: "nm_ruas"
 }

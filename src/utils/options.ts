@@ -55,6 +55,7 @@ export const kegiatanOptions = () : GroupSelect[] => {
                 {
                     label: "Proyek",
                     options: [
+                        { value: KEGIATAN.BANKEU, label: "Bantuan Keuangan"},
                         { value: KEGIATAN.JEMBATAN, label: "Jembatan"},
                         { value: KEGIATAN.PEMELIHARAAN, label: "Pemeliharaan"},
                         { value: KEGIATAN.PEKERJAAN, label:  "Paket Pekerjaan"},
@@ -64,8 +65,10 @@ export const kegiatanOptions = () : GroupSelect[] => {
                 {
                     label: "Tata Ruang",
                     options: [
+                        { value: KEGIATAN.RUMIJA, label: "Ruang Milik Jalan"},
                         { value: KEGIATAN.CCTV, label: "CCTV"},
                         { value: KEGIATAN.VEHICLE_COUNTING, label:  "Vehicle Counting"},
+                        { value: KEGIATAN.SATUAN_PENDIDIKAN, label:  "Satuan Pendidikan"},
                     ]
                 },
             ]

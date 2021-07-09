@@ -22,14 +22,17 @@ export const KEGIATAN = {
     AREA_RAWAN_BENCANA: "datarawanbencana",
 
     // --- Proyek
+    BANKEU: "bankeu",
     JEMBATAN: "jembatan",
     PEMELIHARAAN: "pemeliharaan",
     PEKERJAAN: "pekerjaan",
     LAPORAN_MASYARAKAT: "laporanmasyarakat",
 
     // --- Tata Ruang
+    RUMIJA: "rumija",
     CCTV: "cctv",
     VEHICLE_COUNTING: "vehiclecounting",
+    SATUAN_PENDIDIKAN: "satuanpendidikan"
 }
 
 export const HAS_TANGGAL = [

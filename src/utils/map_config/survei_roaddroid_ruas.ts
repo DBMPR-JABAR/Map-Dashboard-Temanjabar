@@ -1,6 +1,6 @@
 import { ACTION_ID } from './jalan';
 
-const PATH = process.env.GEOSERVER_URL + "geoserver/gsr/services/temanjabar/FeatureServer/6/"
+const PATH = `${process.env.GEOSERVER_URL}/geoserver/gsr/services/temanjabar/FeatureServer/6/`
 const LAYER_ID = "rjp_skj"
 const TITLE = "Hasil Survei Kondisi Jalan"
 

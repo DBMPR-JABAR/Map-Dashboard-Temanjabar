@@ -1,6 +1,6 @@
 import { ACTION_ID } from '../jalan';
 
-const PATH = process.env.GEOSERVER_URL + "geoserver/gsr/services/temanjabar/FeatureServer/2/"
+const PATH = `${process.env.GEOSERVER_URL}/geoserver/gsr/services/temanjabar/FeatureServer/2/`
 const LAYER_ID = "rjn"
 const TITLE = "Ruas Jalan Nasional"
 
@@ -12,11 +12,10 @@ const prepSVAction : __esri.ActionButtonProperties = {
 };
 
 const popUpTemplate : __esri.PopupTemplateProperties = {
-    title: "{NAMA_SK}",
+    title: "{nama_sk}",
     content: [{
         type: "fields",
-        fieldInfos: [
-            {
+        fieldInfos: [{
                 fieldName: "NO_RUAS",
                 label: "Nomor Ruas"
             },
@@ -38,13 +37,21 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
             {
                 fieldName: "TAHUN",
                 label: "Tahun"
+            },
+            {
+                fieldName: "sumber_data",
+                label: "Sumber Data"
+            },
+            {
+                fieldName: "sumber_tahun",
+                label: "Tahun Data Diambil"
             }
         ]
     }],
     expressionInfos: [{
         name: "pemilik",
         title: "Status Jalan",
-        expression: `return "Kementrian PUPR"`,
+        expression: `return "Jalan Nasional"`,
     }],
     actions: [prepSVAction as __esri.ActionButton]
 }

@@ -4,7 +4,7 @@ export const ACTION_ID = "prep-vid"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `${process.env.BASE_URL}assets/images/marker/cctv.png`
+const ICON = `${process.env.BASE_URL}/assets/images/marker/cctv.png`
 
 export type Cctv = {
     ID: number,

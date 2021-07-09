@@ -86,7 +86,19 @@ const SearchSource : React.FC<SearchSourceProps> = (props: SearchSourceProps) =>
                     searchWidget.sources.removeAll()
 
                     layer.forEach((source) => {
-                        searchWidget.sources.push(createSearchSource(source))
+                        if(source.layer.myType === "outsource-layer"){
+                            searchWidget.sources.push(new LayerSearchSource({
+                                layer: source.layer,
+                                searchFields: [source.searchField],
+                                displayField: source.searchField,
+                                exactMatch: false,
+                                outFields: ["*"],
+                                name: source.name,
+                                placeholder: source.name
+                            }))
+                        }else{
+                            searchWidget.sources.push(createSearchSource(source))
+                        }
                     })
                     
                 }

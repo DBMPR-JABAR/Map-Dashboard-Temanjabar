@@ -3,7 +3,7 @@ const TITLE = "Pemeliharaan"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `${process.env.BASE_URL}assets/images/marker/pemeliharaan.png`
+const ICON = `${process.env.BASE_URL}/assets/images/marker/pemeliharaan.png`
 
 
 export type Pemeliharaan = {
