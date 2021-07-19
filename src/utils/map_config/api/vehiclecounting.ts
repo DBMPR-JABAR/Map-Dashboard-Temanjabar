@@ -340,8 +340,6 @@ export const renderVehicleCounting = (items: VehicleCounting[]) : __esri.Feature
         } as VehicleCounting & { [OBJECT_ID] : number }
     }))
 
-    console.log(graphics)
-    
     return  {
         myType: "feature-layer",
         searchField: "LOKASI",

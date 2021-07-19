@@ -14,7 +14,7 @@ export type SupResponse = {
 }
 
 const getSUP = async (uptd: string[]) => {
-    const requestUrl = process.env.BASE_URL + "/api/map/dashboard/sup"
+    const requestUrl = `${process.env.BASE_URL}/api/map/dashboard/sup`
     const body = {
         uptd: uptd
     }
