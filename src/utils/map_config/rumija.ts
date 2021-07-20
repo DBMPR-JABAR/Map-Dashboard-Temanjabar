@@ -3,6 +3,7 @@ import { ACTION_ID } from './jalan';
 const PATH = `${process.env.GEOSERVER_URL}/geoserver/gsr/services/temanjabar/FeatureServer/17/`
 const LAYER_ID = "tx_rumija"
 const TITLE = "Ruang Milik Jalan"
+const ICON = `${process.env.BASE_URL}/assets/images/marker/peningkatan.png`
 
 const prepSVAction : __esri.ActionButtonProperties = {
     type: "button",
@@ -104,7 +105,7 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
 
 const symbol : __esri.PictureMarkerSymbolProperties = {
     type: "picture-marker",
-    url: "http://localhost:8080/assets/images/marker/peningkatan.png",
+    url: ICON,
     width: "24px",
     height: "24px"
 }
