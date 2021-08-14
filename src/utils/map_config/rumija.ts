@@ -3,7 +3,7 @@ import { ACTION_ID } from './jalan';
 const PATH = `${process.env.GEOSERVER_URL}/geoserver/gsr/services/temanjabar/FeatureServer/17/`
 const LAYER_ID = "tx_rumija"
 const TITLE = "Ruang Milik Jalan"
-const ICON = `${process.env.BASE_URL}/assets/images/marker/peningkatan.png`
+const ICON = `${process.env.BASE_URL}/assets/images/marker/rumija.png`
 
 const prepSVAction : __esri.ActionButtonProperties = {
     type: "button",
