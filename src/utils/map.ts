@@ -10,8 +10,8 @@ export const mapViewOptions : __esri.MapViewProperties = {
         dockOptions: {
             buttonEnabled: false,
             breakpoint: {
-                width: 720,
-                height: 720
+                width: 1920,
+                height: 1080
             },
             position : "top-right"
         }
