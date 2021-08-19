@@ -32,7 +32,10 @@ export const KEGIATAN = {
     RUMIJA: "rumija",
     CCTV: "cctv",
     VEHICLE_COUNTING: "vehiclecounting",
-    SATUAN_PENDIDIKAN: "satuanpendidikan"
+    SATUAN_PENDIDIKAN: "satuanpendidikan",
+
+    // --- BIM
+    LEGER: "leger",
 }
 
 export const HAS_TANGGAL = [
