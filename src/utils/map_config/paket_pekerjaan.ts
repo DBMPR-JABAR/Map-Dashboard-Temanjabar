@@ -27,9 +27,9 @@ const katPaket = [
     "Pemeliharaan Berkala Jembatan",
     "Penanggulangan Bencana/Tanggap Darurat"
 ];
-const colors = ["aqua", "blue", "fuchsia", "green", "lime", "maroon", "navy", "olive",
-                "orange", "purple", "red", "teal", "yellow", "pink", "tomato", "brown",
-                "darkslategrey","gold"];
+const colors = ["#e6194B", "#3cb44b", "#ffe119", "#4363d8", "#f58231", "#911eb4", "#42d4f4", "#f032e6",
+                "#bfef45", "#fabed4", "#469990", "#dcbeff", "#9A6324", "#fffac8", "#800000", "#aaffc3",
+                "#808000","#000075"];
 
 const popUpTemplate : __esri.PopupTemplateProperties = {
     title: "{NAMA_PAKET}",
