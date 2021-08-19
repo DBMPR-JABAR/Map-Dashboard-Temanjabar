@@ -73,7 +73,7 @@ export const kegiatanOptions = () : GroupSelect[] => {
                 },
             ]
             break
-        case "masyarakat":
+        default:
             kegiatanOptions = [
                 {
                     label: "Ruas Jalan",
@@ -100,6 +100,7 @@ export const kegiatanOptions = () : GroupSelect[] => {
                 {
                     label: "Tata Ruang",
                     options: [
+                        { value: KEGIATAN.RUMIJA, label: "Ruang Milik Jalan"},
                         { value: KEGIATAN.CCTV, label: "CCTV"},
                     ]
                 },
