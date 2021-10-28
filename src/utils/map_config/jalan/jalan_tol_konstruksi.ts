@@ -42,7 +42,7 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
 
 const symbol : __esri.SimpleLineSymbolProperties = {
     type: "simple-line", 
-    color: "purple",
+    color: "#f2bf18",
     width: "2px",
     style: "solid",
 }
