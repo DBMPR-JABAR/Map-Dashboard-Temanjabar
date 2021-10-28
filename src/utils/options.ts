@@ -45,6 +45,12 @@ export const kegiatanOptions = () : GroupSelect[] => {
                     ]
                 },
                 {
+                    label: "Integrasi BIM",
+                    options: [
+                        { value: KEGIATAN.LEGER, label: "Leger Jalan"}
+                    ]
+                },
+                {
                     label: "Kebencanaan",
                     options: [
                         { value: KEGIATAN.LAPORAN_BENCANA, label: "Laporan Bencana"},
@@ -68,7 +74,6 @@ export const kegiatanOptions = () : GroupSelect[] => {
                         { value: KEGIATAN.RUMIJA, label: "Ruang Milik Jalan"},
                         { value: KEGIATAN.CCTV, label: "CCTV"},
                         { value: KEGIATAN.VEHICLE_COUNTING, label:  "Vehicle Counting"},
-                        { value: KEGIATAN.SATUAN_PENDIDIKAN, label:  "Satuan Pendidikan"},
                     ]
                 },
             ]

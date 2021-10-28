@@ -22,7 +22,8 @@ import { renderRawanBencana } from "../utils/map_config/api/rawanbencana";
 import { paketRuasConfig, paketTitikConfig } from "../utils/map_config/paket_pekerjaan";
 import { satuanPendidikanConfig } from "../utils/map_config/satuan_pendidikan";
 import { bantuanKeuanganConfig } from "../utils/map_config/bantuan_keuangan";
-import { rumijaConfig } from "../utils/map_config/rumija";
+import { rumijaConfig } from "../utils/map_config/rumija"; 
+import { legerLayerConfig } from "../utils/map_config/bim/leger";
 
 export type RendererProps = {
     map: __esri.Map | null
@@ -157,6 +158,9 @@ const renderWMS : {[k: string] : (uptd: string[], sup: string[], tanggal: Tangga
         bantuanKeuanganConfig.definitionExpression = query
         
         return bantuanKeuanganConfig
+    },
+    [KEGIATAN.LEGER] : (uptd) => {
+        return legerLayerConfig;
     },
     [KEGIATAN.RUMIJA] : (uptd) => {
         // const uptdNum = _.join(_.map(uptd, (value) => `'${value.charAt(4)}'`), ',')
