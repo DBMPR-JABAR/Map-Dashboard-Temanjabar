@@ -7,24 +7,25 @@ const path = require("path")
 module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'public/index.html'
+      template: "public/index.html",
     }),
     new CleanWebpackPlugin(),
     new Dotenv({
       systemvars: true,
-    })
+    }),
   ],
   entry: {
-    mapdashboard: path.resolve(__dirname, './src/index.tsx'),
+    mapdashboard: path.resolve(__dirname, "./src/index.tsx"),
   },
   output: {
-    filename: `[name].${process.env.MODE}.js`,
-    path: path.resolve(__dirname, `deploy-${process.env.MODE}`)
+    filename:
+      (process.env.MODE && `[name].${process.env.MODE}.js`) || "[name].js",
+    path: path.resolve(__dirname, (process.env.MODE && `deploy-${process.env.MODE}`) || 'deploy'),
   },
   devServer: {
-    contentBase: './deploy',
+    static: "./deploy",
     open: true,
-    port:8080
+    port: 2021,
   },
   module: {
     rules: [
@@ -32,22 +33,22 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+            presets: ["@babel/preset-env"],
+          },
+        },
       },
       { test: /\.css$/, use: ["style-loader", "css-loader"] },
-      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource'},
-      { test: /\.tsx?$/, loader: 'ts-loader', exclude: '/node_modules/' },
-    ]
+      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: "asset/resource" },
+      { test: /\.tsx?$/, loader: "ts-loader", exclude: "/node_modules/" },
+    ],
   },
   resolve: {
-    extensions: ['.ts', '.js', '.json', '.tsx'],
+    extensions: [".ts", ".js", ".json", ".tsx"],
     fallback: {
       fs: false,
       path: false,
     },
-  }
-}
+  },
+};
