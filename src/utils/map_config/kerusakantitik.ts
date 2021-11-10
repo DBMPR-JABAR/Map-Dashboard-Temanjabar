@@ -66,7 +66,7 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                 if(foto !== undefined){
                     html += `
                     <div class="esri-feature-media__item">
-                        <img src="${baseUrl}/storage/${foto}" alt="Foto 1" />
+                        <img src="${baseUrl}/storage/survei/kerusakan/${foto}" alt="Foto 1" />
                     </div>`;
                 }
                 return html;

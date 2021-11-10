@@ -68,7 +68,20 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                     label: "UPTD"
                 }
             ]
-        }
+        },
+        {
+            type: "custom",
+            outFields: ["*"],
+            creator: function(feature: any) {
+                const baseUrl = process.env.BASE_URL
+                const idruas = feature.graphic.attributes.idruas;
+
+                const html = `
+                    <a href="${baseUrl}/admin/monitoring/kinerja-jalan/${idruas}" target="_blank" class="btn btn-primary text-white">Lihat Detail</a>
+                `;
+                return html;
+            }
+        },
     ],
     actions: [prepSVAction as __esri.ActionButton]
 }
