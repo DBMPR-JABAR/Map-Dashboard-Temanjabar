@@ -13,6 +13,7 @@ export const KEGIATAN = {
     // --- Ruas Jalan
     RUAS_JALAN: "ruasjalan",
     KEMANTAPAN_JALAN: "kemantapanjalan",
+    KERUSAKAN_JALAN_TITIK: "kerusakanjalan_titik",
     KONDISI_JALAN: "kondisijalan",
     KONDISI_JALAN_TITIK: "kondisijalan_titik",
 

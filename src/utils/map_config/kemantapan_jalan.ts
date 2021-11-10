@@ -48,28 +48,16 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                     label: "Nomor Ruas"
                 },
                 {
-                    fieldName: "KOTA_KAB",
+                    fieldName: "kab_kota",
                     label: "Kota/Kabupaten"
                 },
                 {
-                    fieldName: "LAT_AWAL",
-                    label: "Latitude Awal"
+                    fieldName: "ikp",
+                    label: "IKP"
                 },
                 {
-                    fieldName: "LONG_AWAL",
-                    label: "Longitude Awal"
-                },
-                {
-                    fieldName: "LAT_AKHIR",
-                    label: "Latitude Akhir"
-                },
-                {
-                    fieldName: "LONG_AKHIR",
-                    label: "Longitude Akhir"
-                },
-                {
-                    fieldName: "KETERANGAN",
-                    label: "Keterangan"
+                    fieldName: "tgl_survei",
+                    label: "Tanggal Survei"
                 },
                 {
                     fieldName: "nm_sppjj",

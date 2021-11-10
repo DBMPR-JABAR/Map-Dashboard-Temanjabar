@@ -40,6 +40,7 @@ export const kegiatanOptions = () : GroupSelect[] => {
                     options: [
                         { value: KEGIATAN.RUAS_JALAN, label: "Ruas Jalan"},
                         { value: KEGIATAN.KEMANTAPAN_JALAN, label:  "Survei Kondisi Kemantapan Jalan"},
+                        { value: KEGIATAN.KERUSAKAN_JALAN_TITIK, label:  "Kerusakan Jalan (Titik)"},
                         { value: KEGIATAN.KONDISI_JALAN, label:  "Survei Kondisi Jalan dengan Roaddroid"},
                         { value: KEGIATAN.KONDISI_JALAN_TITIK, label:  "Survei Kondisi Jalan (Titik Roaddroid)"},
                     ]
@@ -84,6 +85,7 @@ export const kegiatanOptions = () : GroupSelect[] => {
                     label: "Ruas Jalan",
                     options: [
                         { value: KEGIATAN.RUAS_JALAN, label: "Ruas Jalan"},
+                        { value: KEGIATAN.KERUSAKAN_JALAN_TITIK, label:  "Kerusakan Jalan (Titik)"},
                     ]
                 },
                 {
