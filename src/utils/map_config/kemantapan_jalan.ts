@@ -56,8 +56,15 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                     label: "IKP"
                 },
                 {
+                    fieldName: "kemantapan",
+                    label: "Kemantapan (%)"
+                },
+                {
                     fieldName: "tgl_survei",
-                    label: "Tanggal Survei"
+                    label: "Tanggal Survei",
+                    format: {
+                        dateFormat: "short-date"
+                    }
                 },
                 {
                     fieldName: "nm_sppjj",
