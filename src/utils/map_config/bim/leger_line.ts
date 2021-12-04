@@ -21,20 +21,20 @@ export const buildLegerLine = (uptd: string) : __esri.FeatureLayerProperties => 
         url: PATH,
         title: TITLE,
         id: LAYER_ID,
-        popupEnabled: true,
-        popupTemplate: {
-            title: "Leger",
-            fieldInfos: [
-                {
-                    fieldName: "Name",
-                    label: "Name"
-                },
-                {
-                    fieldName: "PopupInfo",
-                    label: "Popup Info"
-                }
-            ]
-        },
+        // popupEnabled: true,
+        // popupTemplate: {
+        //     title: "Leger",
+        //     fieldInfos: [
+        //         {
+        //             fieldName: "Name",
+        //             label: "Name"
+        //         },
+        //         {
+        //             fieldName: "PopupInfo",
+        //             label: "Popup Info"
+        //         }
+        //     ]
+        // },
         outFields: ["*"],
     }
 
