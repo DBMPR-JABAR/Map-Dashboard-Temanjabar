@@ -20,10 +20,23 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                 {
                     title: "<b>Kondisi Jalan</b>",
                     type: "pie-chart",
-                    caption: "Dari Luas Jalan {l} m2",
+                    caption: "Dari Luas Jalan {luas} m2",
                     value: {
                         fields: ["sangat_baik", "baik", "sedang", "jelek", "parah", "sangat_parah", "hancur"]
                     }
+                },
+                {
+                    type: "media",
+                    mediaInfos: [
+                        {
+                            title: "<b>Kemantapan Jalan</b>",
+                            type: "pie-chart",
+                            caption: "Dari Luas Jalan {luas} m2",
+                            value: {
+                                fields: ["kemantapan", "expression/tidakmantap"]
+                            }
+                        }
+                    ]
                 },
                 {
                     title: "<b>Jalan Mantap</b>",
@@ -89,6 +102,13 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                 return html;
             }
         },
+    ],
+    expressionInfos: [
+        {
+            name: "tidakmantap",
+            title: "tidak mantap",
+            expression: "100 - $feature.kemantapan"
+        }
     ],
     actions: [prepSVAction as __esri.ActionButton]
 }

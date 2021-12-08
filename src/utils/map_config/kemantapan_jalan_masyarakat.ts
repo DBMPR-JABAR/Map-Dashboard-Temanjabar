@@ -18,9 +18,9 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
             type: "media",
             mediaInfos: [
                 {
-                    title: "<b>Kondisi Jalan</b>",
+                    title: "<b>Kemantapan Jalan</b>",
                     type: "pie-chart",
-                    caption: "Dari Luas Jalan {l} m2",
+                    caption: "Dari Luas Jalan {luas} m2",
                     value: {
                         fields: ["kemantapan", "expression/tidakmantap"]
                     }
@@ -43,9 +43,9 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                 },
                 {
                     fieldName: "tgl_survei",
-                    label: "Tanggal Survei",
+                    label: "Periode Survei",
                     format: {
-                        dateFormat: "short-date"
+                        dateFormat: "year"
                     }
                 },
                 {
@@ -62,6 +62,7 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
     expressionInfos: [
         {
             name: "tidakmantap",
+            title: "tidak mantap",
             expression: "100 - $feature.kemantapan"
         }
     ],

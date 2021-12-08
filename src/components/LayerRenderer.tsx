@@ -25,6 +25,7 @@ import { bantuanKeuanganConfig } from "../utils/map_config/bantuan_keuangan";
 import { rumijaConfig } from "../utils/map_config/rumija"; 
 import { buildLeger } from "../utils/map_config/bim/leger";
 import { kerusakanTitikConfig } from "../utils/map_config/kerusakantitik";
+import { kemantapanJalanMasyarakatConfig } from "../utils/map_config/kemantapan_jalan_masyarakat";
 
 export type RendererProps = {
     map: __esri.Map | null
@@ -125,6 +126,13 @@ const renderWMS : {[k: string] : (uptd: string[], sup: string[], tanggal: Tangga
         kemantapanJalanConfig.definitionExpression = query
         
         return kemantapanJalanConfig
+    },
+    [KEGIATAN.KEMANTAPAN_JALAN_MASYARAKAT] : (uptd) => {
+        const uptdNum = _.join(_.map(uptd, (value) => value.charAt(4)), ',')
+        let query = (!_.isEmpty(uptd)) ? `uptd IN (${uptdNum})` : ''
+        kemantapanJalanMasyarakatConfig.definitionExpression = query
+        
+        return kemantapanJalanMasyarakatConfig
     },
     [KEGIATAN.KONDISI_JALAN] : (uptd) => {
         const uptdNum = _.join(_.map(uptd, (value) => value.charAt(4)), ',')
