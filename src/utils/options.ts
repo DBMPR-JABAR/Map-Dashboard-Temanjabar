@@ -85,6 +85,7 @@ export const kegiatanOptions = () : GroupSelect[] => {
                     label: "Ruas Jalan",
                     options: [
                         { value: KEGIATAN.RUAS_JALAN, label: "Ruas Jalan"},
+                        { value: KEGIATAN.KEMANTAPAN_JALAN_MASYARAKAT, label:  "Kemantapan Jalan"},
                         { value: KEGIATAN.KERUSAKAN_JALAN_TITIK, label:  "Kerusakan Jalan (Titik)"},
                     ]
                 },
