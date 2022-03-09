@@ -9,7 +9,7 @@
     "build-masyarakat": "set MODE=masyarakat&& webpack --mode production --progress",
     "build-internal": "set MODE=internal&& webpack --mode production --progress",
     "build-all": "npm run build-uptd && npm run build-masyarakat && npm run build-internal",
-    "serve": "set MODE=masyarakat&& webpack serve --mode development"
+    "serve": "set MODE=internal&& webpack serve --mode development"
   },
   "repository": {
     "type": "git",

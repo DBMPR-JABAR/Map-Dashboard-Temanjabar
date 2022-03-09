@@ -9,8 +9,8 @@ export const buildLegerLine = (uptd: string) : __esri.FeatureLayerProperties => 
         ["uptd2"]: "None",
         ["uptd3"]: "None",
         ["uptd4"]: "https://services3.arcgis.com/kk81tlhFylVuTwCq/arcgis/rest/services/Leger_UPTD4_2019_WFL1/FeatureServer/2",
-        ["uptd5"]: "https://services3.arcgis.com/kk81tlhFylVuTwCq/arcgis/rest/services/LegerMajalengka_WFL1/FeatureServer/2",
-        ["uptd6"]: "None",
+        ["uptd5"]: "None",
+        ["uptd6"]: "https://services3.arcgis.com/kk81tlhFylVuTwCq/arcgis/rest/services/LegerMajalengka_WFL1/FeatureServer/2",
     }
 
     const PATH: string = pathList[uptd] || "None";

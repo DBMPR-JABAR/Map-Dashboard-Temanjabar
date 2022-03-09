@@ -26,17 +26,12 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                     }
                 },
                 {
-                    type: "media",
-                    mediaInfos: [
-                        {
-                            title: "<b>Kemantapan Jalan</b>",
-                            type: "pie-chart",
-                            caption: "Dari Luas Jalan {luas} m2",
-                            value: {
-                                fields: ["kemantapan", "expression/tidakmantap"]
-                            }
-                        }
-                    ]
+                    title: "<b>Kemantapan Jalan</b>",
+                    type: "pie-chart",
+                    caption: "Dari Luas Jalan {luas} m2",
+                    value: {
+                        fields: ["kemantapan", "expression/tidakmantap"]
+                    }
                 },
                 {
                     title: "<b>Jalan Mantap</b>",

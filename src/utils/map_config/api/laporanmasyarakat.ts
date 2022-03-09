@@ -3,7 +3,7 @@ const TITLE = "Laporan Masyarakat"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `${process.env.BASE_URL}/assets/images/marker/jembatan.png`
+const ICON = `${process.env.BASE_URL}/assets/images/marker/complain.png`
 
 
 export type LaporanMasyarakat = {
@@ -104,15 +104,20 @@ const popupTemplate : __esri.PopupTemplateProperties = {
             ]
         },
         {
-            type: "media",
-            mediaInfos: [{
-                title: "<b>Foto Kondisi</b>",
-                type: "image",
-                altText: "Foto Tidak Ada",
-                value: {
-                    sourceURL: `${process.env.BASE_URL}/storage/{gambar}`
+            type: "custom",
+            outFields: ["*"],
+            creator: function(feature: any) {
+                const foto = feature.graphic.attributes.gambar;
+                console.log(foto);
+                let html = '';
+                if(foto != undefined){
+                    html += `
+                    <div class="esri-feature-media__item">
+                        <img src="${process.env.BASE_URL}/storage/${foto}" alt="Failed to load" />
+                    </div>`;
                 }
-            }]
+                return html;
+            }
         }
     ]
 };
