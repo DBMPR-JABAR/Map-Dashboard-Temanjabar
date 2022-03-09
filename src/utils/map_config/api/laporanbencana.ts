@@ -102,24 +102,19 @@ const popupTemplate : __esri.PopupTemplateProperties = {
             ]
         },
         {
-            type: "media",
-            mediaInfos: [{
-                title: "<b>Foto Aktual</b>",
-                type: "image",
-                altText: "Foto Tidak Ada",
-                value: {
-                    sourceURL: `${process.env.BASE_URL}/storage/{FOTO}`
-                }
-            }]
-        },
-        {
-            title: "<b>Video</b>",
             type: "custom",
             outFields: ["*"],
             creator: function(feature: any) {
+                const foto = feature.graphic.attributes.FOTO;
                 const video = feature.graphic.attributes.VIDEO;
                 let html = '';
-                if(video != ""){
+                if(isImage(foto)){
+                    html += `
+                    <div class="esri-feature-media__item">
+                        <img src="${process.env.BASE_URL}/storage/${foto}" alt="Failed to load" />
+                    </div>`;
+                }
+                if(isVideo(video)){
                     html += `
                     <div class="esri-feature-media__item">
                         <video controls class="esri-feature-media__item">

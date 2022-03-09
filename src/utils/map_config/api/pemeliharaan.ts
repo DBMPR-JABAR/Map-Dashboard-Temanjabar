@@ -7,114 +7,114 @@ const ICON = `${process.env.BASE_URL}/assets/images/marker/pemeliharaan.png`
 
 
 export type Pemeliharaan = {
-    ID_PEK: string,
-    TANGGAL: string,
-    NAMA_MANDOR: string,
-    SUP: string,
-    RUAS_JALAN: string,
-    JENIS_PEKERJAAN: number,
-    PAKET: string,
-    LOKASI: string,
-    PANJANG: number,
-    PERALATAN: string,
-    JUMLAH_PEKERJA: number,
-    FOTO_AWAL: string,
-    FOTO_SEDANG: string,
-    FOTO_AKHIR: string,
-    TGLREAL: string,
-    ID_SESSION: string,
-    KET: string,
-    LAT: number,
-    LNG: number,
-    VIDEO: string,
-    FILE: string,
-    NO_SPP: string,
-    IS_DELETED: number,
-    KATEGORI: string,
-    RULE: string,
-    UPTD: string,
-    CREATED_AT: string,
-    CREATED_BY: number,
-    UPDATED_AT: string,
-    UPDATED_BY: number,
-    FLAG: string,
-    FOTO_PEGAWAI: string
+    id_pek: string,
+    tanggal: string,
+    nama_mandor: string,
+    sup: string,
+    ruas_jalan: string,
+    jenis_pekerjaan: number,
+    paket: string,
+    lokasi: string,
+    panjang: number,
+    peralatan: string,
+    jumlah_pekerja: number,
+    foto_awal: string,
+    foto_sedang: string,
+    foto_akhir: string,
+    tglreal: string,
+    id_session: string,
+    ket: string,
+    lat: number,
+    lng: number,
+    video: string,
+    file: string,
+    no_spp: string,
+    is_deleted: number,
+    kategori: string,
+    rule: string,
+    uptd_id: string,
+    created_at: string,
+    created_by: number,
+    updated_at: string,
+    updated_by: number,
+    flag: string,
+    foto_pegawai: string
 }
 
 const KEY = {
-    ID_PEK : 'ID_PEK',
-    TANGGAL : 'TANGGAL',
-    NAMA_MANDOR : 'NAMA_MANDOR',
-    SUP : 'SUP',
-    RUAS_JALAN : 'RUAS_JALAN',
-    JENIS_PEKERJAAN : 'JENIS_PEKERJAAN',
-    PAKET : 'PAKET',
-    LOKASI : 'LOKASI',
-    PANJANG : 'PANJANG',
-    PERALATAN : 'PERALATAN',
-    JUMLAH_PEKERJA : 'JUMLAH_PEKERJA',
-    FOTO_AWAL : 'FOTO_AWAL',
-    FOTO_SEDANG : 'FOTO_SEDANG',
-    FOTO_AKHIR : 'FOTO_AKHIR',
-    TGLREAL : 'TGLREAL',
-    ID_SESSION : 'ID_SESSION',
-    KET : 'KET',
-    LAT : 'LAT',
-    LNG : 'LNG',
-    VIDEO : 'VIDEO',
-    FILE : 'FILE',
-    NO_SPP : 'NO_SPP',
-    IS_DELETED : 'IS_DELETED',
-    KATEGORI : 'KATEGORI',
-    RULE : 'RULE',
-    UPTD : 'UPTD',
-    CREATED_AT : 'CREATED_AT',
-    CREATED_BY : 'CREATED_BY',
-    UPDATED_AT : 'UPDATED_AT',
-    UPDATED_BY : 'UPDATED_BY',
-    FLAG : 'FLAG',
-    FOTO_PEGAWAI : 'FOTO_PEGAWAI',
+    id_pek : 'id_pek',
+    tanggal : 'tanggal',
+    nama_mandor : 'nama_mandor',
+    sup : 'sup',
+    ruas_jalan : 'ruas_jalan',
+    jenis_pekerjaan : 'jenis_pekerjaan',
+    paket : 'paket',
+    lokasi : 'lokasi',
+    panjang : 'panjang',
+    peralatan : 'peralatan',
+    jumlah_pekerja : 'jumlah_pekerja',
+    foto_awal : 'foto_awal',
+    foto_sedang : 'foto_sedang',
+    foto_akhir : 'foto_akhir',
+    tglreal : 'tglreal',
+    id_session : 'id_session',
+    ket : 'ket',
+    lat : 'lat',
+    lng : 'lng',
+    video : 'video',
+    file : 'file',
+    no_spp : 'no_spp',
+    is_deleted : 'is_deleted',
+    kategori : 'kategori',
+    rule : 'rule',
+    uptd_id : 'uptd_id',
+    created_at : 'created_at',
+    created_by : 'created_by',
+    updated_at : 'updated_at',
+    updated_by : 'updated_by',
+    flag : 'flag',
+    foto_pegawai : 'foto_pegawai',
 }
 
 const popupTemplate : __esri.PopupTemplateProperties = {
-    title: "{RUAS_JALAN}",
+    title: "{ruas_jalan}",
     content: [
         {
             type: "fields",
             fieldInfos: [{
-                    fieldName: "TANGGAL",
+                    fieldName: "tanggal",
                     label: "Tanggal"
                 },
                 {
-                    fieldName: "JENIS_PEKERJAAN",
+                    fieldName: "jenis_pekerjaan",
                     label: "Jenis Pekerjaan"
                 },
                 {
-                    fieldName: "NAMA_MANDOR",
+                    fieldName: "nama_mandor",
                     label: "Nama Mandor"
                 },
                 {
-                    fieldName: "PANJANG",
+                    fieldName: "panjang",
                     label: "Panjang "
                 },
                 {
-                    fieldName: "LAT",
+                    fieldName: "lat",
                     label: "Latitude"
                 },
                 {
-                    fieldName: "LNG",
+                    fieldName: "lng",
                     label: "Longitude"
                 },
                 {
-                    fieldName: "LOKASI",
+                    fieldName: "lokasi",
                     label: "Lokasi"
                 },
                 {
-                    fieldName: "SUP",
+                    fieldName: "sup",
                     label: "SUP"
                 },
                 {
-                    fieldName: "UPTD",
+                    fieldName: "uptd_id",
                     label: "UPTD"
                 }
             ]
@@ -124,7 +124,7 @@ const popupTemplate : __esri.PopupTemplateProperties = {
             title: "<b>Detail Pemeliharaan/b>",
             outFields: ["*"],
             creator: function(feature : any) {
-                var id = feature.graphic.attributes.ID_PEK;
+                var id = feature.graphic.attributes.id_pek;
                 return `<a class="btn btn-primary text-white mb-4" href="${process.env.BASE_URL}/pemeliharaan/pekerjaan/${id}" target="_blank">
                         Lihat Detail Pekerjaan</a>`;
             }
@@ -151,82 +151,82 @@ const fields: __esri.FieldProperties[] = [
         type: "oid"
     },
     {
-        name: "ID_PEK",
-        alias: "ID_PEK",
+        name: "id_pek",
+        alias: "id_pek",
         type: "string"
     },
     {
-        name: "TANGGAL",
+        name: "tanggal",
         alias: "Tanggal",
         type: "string"
     },
     {
-        name: "JENIS_PEKERJAAN",
+        name: "jenis_pekerjaan",
         alias: "Jenis Pekerjaan",
         type: "string"
     },
     {
-        name: "NAMA_MANDOR",
+        name: "nama_mandor",
         alias: "Nama Mandor",
         type: "string"
     },
     {
-        name: "PANJANG",
+        name: "panjang",
         alias: "Panjang",
         type: "string"
     },
     {
-        name: "PERALATAN",
+        name: "peralatan",
         alias: "Peralatan",
         type: "string"
     },
     {
-        name: "LAT",
+        name: "lat",
         alias: "Latitude",
         type: "double"
     },
     {
-        name: "LNG",
+        name: "lng",
         alias: "Longitude",
         type: "double"
     },
     {
-        name: "LOKASI",
+        name: "lokasi",
         alias: "Lokasi",
         type: "string"
     },
     {
-        name: "RUAS_JALAN",
+        name: "ruas_jalan",
         alias: "Ruas Jalan",
         type: "string"
     },
     {
-        name: "FOTO_AWAL",
+        name: "foto_awal",
         alias: "Foto Awal",
         type: "string"
     },
     {
-        name: "FOTO_SEDANG",
+        name: "foto_sedang",
         alias: "Foto Sedang",
         type: "string"
     },
     {
-        name: "FOTO_AKHIR",
+        name: "foto_akhir",
         alias: "Foto Akhir",
         type: "string"
     },
     {
-        name: "VIDEO",
+        name: "video",
         alias: "Video",
         type: "string"
     },
     {
-        name: "SUP",
+        name: "sup",
         alias: "SUP",
         type: "string"
     },
     {
-        name: "UPTD",
+        name: "uptd_id",
         alias: "UPTD",
         type: "string"
     }
@@ -237,8 +237,8 @@ export const renderPemeliharaan = (items: Pemeliharaan[]) : __esri.FeatureLayerP
     const graphics : __esri.GraphicProperties[] = items.map((item, index) => ({
         geometry: {
             type: "point",
-            x: item.LNG,
-            y: item.LAT
+            x: item.lng,
+            y: item.lat
         } as __esri.PointProperties,
         attributes: {
             ObjectID: index,
@@ -248,7 +248,7 @@ export const renderPemeliharaan = (items: Pemeliharaan[]) : __esri.FeatureLayerP
 
     return  {
         myType: "feature-layer",
-        searchField: "RUAS_JALAN",
+        searchField: "ruas_jalan",
         title: TITLE,
         id: LAYER_ID,
         outFields: ["*"],

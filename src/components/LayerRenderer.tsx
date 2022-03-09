@@ -23,8 +23,9 @@ import { paketRuasConfig, paketTitikConfig } from "../utils/map_config/paket_pek
 import { satuanPendidikanConfig } from "../utils/map_config/satuan_pendidikan";
 import { bantuanKeuanganConfig } from "../utils/map_config/bantuan_keuangan";
 import { rumijaConfig } from "../utils/map_config/rumija"; 
-import { legerLayerConfig } from "../utils/map_config/bim/leger";
+import { buildLeger } from "../utils/map_config/bim/leger";
 import { kerusakanTitikConfig } from "../utils/map_config/kerusakantitik";
+import { kemantapanJalanMasyarakatConfig } from "../utils/map_config/kemantapan_jalan_masyarakat";
 
 export type RendererProps = {
     map: __esri.Map | null
@@ -126,6 +127,13 @@ const renderWMS : {[k: string] : (uptd: string[], sup: string[], tanggal: Tangga
         
         return kemantapanJalanConfig
     },
+    [KEGIATAN.KEMANTAPAN_JALAN_MASYARAKAT] : (uptd) => {
+        const uptdNum = _.join(_.map(uptd, (value) => value.charAt(4)), ',')
+        let query = (!_.isEmpty(uptd)) ? `uptd IN (${uptdNum})` : ''
+        kemantapanJalanMasyarakatConfig.definitionExpression = query
+        
+        return kemantapanJalanMasyarakatConfig
+    },
     [KEGIATAN.KONDISI_JALAN] : (uptd) => {
         const uptdNum = _.join(_.map(uptd, (value) => value.charAt(4)), ',')
         let query = (!_.isEmpty(uptd)) ? `uptd IN (${uptdNum})` : ''
@@ -161,7 +169,7 @@ const renderWMS : {[k: string] : (uptd: string[], sup: string[], tanggal: Tangga
         return bantuanKeuanganConfig
     },
     [KEGIATAN.LEGER] : (uptd) => {
-        return legerLayerConfig;
+        return buildLeger(uptd);
     },
     [KEGIATAN.RUMIJA] : (uptd) => {
         const uptdNum = _.join(_.map(uptd, (value) => `'${value.charAt(4)}'`), ',')

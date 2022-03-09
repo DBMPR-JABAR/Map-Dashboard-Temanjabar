@@ -18,33 +18,11 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
             type: "media",
             mediaInfos: [
                 {
-                    title: "<b>Kondisi Jalan</b>",
-                    type: "pie-chart",
-                    caption: "Dari Luas Jalan {luas} m2",
-                    value: {
-                        fields: ["sangat_baik", "baik", "sedang", "jelek", "parah", "sangat_parah", "hancur"]
-                    }
-                },
-                {
                     title: "<b>Kemantapan Jalan</b>",
                     type: "pie-chart",
                     caption: "Dari Luas Jalan {luas} m2",
                     value: {
                         fields: ["kemantapan", "expression/tidakmantap"]
-                    }
-                },
-                {
-                    title: "<b>Jalan Mantap</b>",
-                    type: "pie-chart",
-                    value: {
-                        fields: ["sangat_baik", "baik", "sedang"]
-                    }
-                },
-                {
-                    title: "<b>Jalan Tidak Mantap</b>",
-                    type: "pie-chart",
-                    value: {
-                        fields: ["jelek", "parah", "sangat_parah", "hancur"]
                     }
                 }
             ]
@@ -60,18 +38,14 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                     label: "Kota/Kabupaten"
                 },
                 {
-                    fieldName: "ikp",
-                    label: "IKP"
-                },
-                {
                     fieldName: "kemantapan",
                     label: "Kemantapan (%)"
                 },
                 {
                     fieldName: "tgl_survei",
-                    label: "Tanggal Survei",
+                    label: "Periode Survei",
                     format: {
-                        dateFormat: "short-date"
+                        dateFormat: "year"
                     }
                 },
                 {
@@ -83,20 +57,7 @@ const popUpTemplate : __esri.PopupTemplateProperties = {
                     label: "UPTD"
                 }
             ]
-        },
-        {
-            type: "custom",
-            outFields: ["*"],
-            creator: function(feature: any) {
-                const baseUrl = process.env.BASE_URL
-                const idruas = feature.graphic.attributes.idruas;
-
-                const html = `
-                    <a href="${baseUrl}/admin/monitoring/kinerja-jalan/${idruas}" target="_blank" class="btn btn-primary text-white">Lihat Detail</a>
-                `;
-                return html;
-            }
-        },
+        }
     ],
     expressionInfos: [
         {
@@ -125,7 +86,7 @@ const renderer: __esri.SimpleRendererProperties = {
     symbol: symbol
 }
 
-export const kemantapanJalanConfig : __esri.FeatureLayerProperties = {
+export const kemantapanJalanMasyarakatConfig : __esri.FeatureLayerProperties = {
     myType: "feature-layer",
     searchField: "nm_ruas",
     url: PATH,
