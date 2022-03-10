@@ -6,6 +6,7 @@ import { LaporanMasyarakat } from "../../utils/map_config/api/laporanmasyarakat"
 import { Pemeliharaan } from "../../utils/map_config/api/pemeliharaan"
 import { IconRawanBencana, RawanBencana } from "../../utils/map_config/api/rawanbencana"
 import { VehicleCounting } from "../../utils/map_config/api/vehiclecounting"
+import { SapuLobang } from "../../utils/map_config/api/sapulobang"
 
 
 
@@ -27,6 +28,8 @@ export type KegiatanResponseData = {
     iconlaporanbencana: IconLaporanBencana[],
     cctv: Cctv[],
     laporanmasyarakat: LaporanMasyarakat[]
+    sapulobang: SapuLobang[],
+
 }
 
 export type KegiatanResponse = {
@@ -38,7 +41,7 @@ const requestKegiatan = async (body: KegiatanRequest) => {
     const requestUrl = `${process.env.BASE_URL}/api/map/dashboard/data`
     const response = await axios.post<KegiatanResponse>(requestUrl, body)
     const data = response.data
-
+    // console.log(data)
     return data
 }
 

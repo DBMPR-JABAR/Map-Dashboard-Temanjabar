@@ -17,6 +17,7 @@ export const KEGIATAN = {
     KERUSAKAN_JALAN_TITIK: "kerusakanjalan_titik",
     KONDISI_JALAN: "kondisijalan",
     KONDISI_JALAN_TITIK: "kondisijalan_titik",
+    SAPU_LOBANG:  "sapulobang",
 
     // --- Kebencanaan
     LAPORAN_BENCANA: "laporanbencana",
@@ -42,7 +43,9 @@ export const KEGIATAN = {
 
 export const HAS_TANGGAL = [
     KEGIATAN.PEMELIHARAAN,
-    KEGIATAN.PEKERJAAN
+    KEGIATAN.PEKERJAAN,
+    KEGIATAN.SAPU_LOBANG
+
 ]
 
 export const NEED_API_REQUEST = [
@@ -52,7 +55,8 @@ export const NEED_API_REQUEST = [
     KEGIATAN.TITIK_RAWAN_BENCANA,
     KEGIATAN.LAPORAN_BENCANA,
     KEGIATAN.LAPORAN_MASYARAKAT,
-    KEGIATAN.VEHICLE_COUNTING
+    KEGIATAN.VEHICLE_COUNTING,
+    KEGIATAN.SAPU_LOBANG
 ]
 
 export type Coordinate = {

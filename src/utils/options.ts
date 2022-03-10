@@ -43,6 +43,8 @@ export const kegiatanOptions = () : GroupSelect[] => {
                         { value: KEGIATAN.KERUSAKAN_JALAN_TITIK, label:  "Kerusakan Jalan (Titik)"},
                         { value: KEGIATAN.KONDISI_JALAN, label:  "Survei Kondisi Jalan dengan Roaddroid"},
                         { value: KEGIATAN.KONDISI_JALAN_TITIK, label:  "Survei Kondisi Jalan (Titik Roaddroid)"},
+                        { value: KEGIATAN.SAPU_LOBANG, label:  "Sapu Lobang"},
+
                     ]
                 },
                 {
