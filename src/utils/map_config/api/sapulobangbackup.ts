@@ -1,18 +1,10 @@
-const LAYER_ID = "tx_rawan_bencana"
-const TITLE = "Titik Rawan Bencana"
+const LAYER_ID = "tx_sapu_lobang"
+const TITLE = "Sapu Lobang"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
+const ICON = `${process.env.BASE_URL}/assets/images/marker/sapulobang.png`
 
-export type IconSapuLobang = {
-    keterangan: string,
-    icon: string
-}
-
-const ICON_KEY = {
-    keterangan: "keterangan",
-    icon: "icon"
-}
 
 export type SapuLobang = {
     tanggal: string,
@@ -20,7 +12,6 @@ export type SapuLobang = {
     long: number,
     uptd_id: string,
     icon: string,
-    keterangan: string,
     created_at: string,
     created_by: number,
     updated_at: string,
@@ -33,7 +24,6 @@ const KEY = {
     long : 'long',
     uptd_id : 'uptd_id',
     icon : 'icon',
-    keterangan : 'keterangan',
     created_at : 'created_at',
     created_by : 'created_by',
     updated_at : 'updated_at',
@@ -80,6 +70,18 @@ const popupTemplate : __esri.PopupTemplateProperties = {
     ],
 }
 
+const symbol: __esri.PictureMarkerSymbolProperties = {
+    type: "picture-marker",
+    url: ICON,
+    width: "24px",
+    height: "24px"
+}
+
+const renderer: __esri.SimpleRendererProperties = {
+    type: "simple",
+    symbol: symbol
+}
+
 const fields: __esri.FieldProperties[] = [
     {
         name: OBJECT_ID,
@@ -113,27 +115,8 @@ const fields: __esri.FieldProperties[] = [
     }
 ]
 
-
-const renderer = (icons: IconSapuLobang[]) : __esri.UniqueValueRendererProperties => {
-    const uniqueValueInfos : __esri.UniqueValueInfoProperties[] = icons.map((data) => ({
-        value: data.keterangan,
-        symbol: {
-            type: "picture-marker",
-            url: `${process.env.BASE_URL}/storage/${data.icon}`,
-            width: "28px",
-            height: "28px"
-        } as __esri.PictureMarkerSymbolProperties
-    }))
-
-    return {
-        type: "unique-value",
-        field: KEY.keterangan,
-        uniqueValueInfos: uniqueValueInfos
-    }
-}
-
-export const renderSapuLobang = (items: SapuLobang[], icons: IconSapuLobang[]) : __esri.FeatureLayerProperties => {
-
+export const renderSapuLobang = (items: SapuLobang[]) : __esri.FeatureLayerProperties => {
+    
     const graphics : __esri.GraphicProperties[] = items.map((item, index) => ({
         geometry: {
             type: "point",
@@ -148,14 +131,14 @@ export const renderSapuLobang = (items: SapuLobang[], icons: IconSapuLobang[]) :
 
     return  {
         myType: "feature-layer",
-        searchField: "RUAS_JALAN",
+        searchField: "ruas_jalan",
         title: TITLE,
         id: LAYER_ID,
         outFields: ["*"],
-        fields: fields,
         geometryType: GEOM_TYPE,
+        fields: fields,
         popupTemplate: popupTemplate,
-        renderer: renderer(icons),
+        renderer: renderer,
         source: graphics,
         objectIdField: OBJECT_ID
     }
