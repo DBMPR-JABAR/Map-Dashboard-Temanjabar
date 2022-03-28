@@ -1,27 +1,19 @@
-const LAYER_ID = "tx_sapu_lobang"
-const TITLE = "Sapu Lobang"
+const LAYER_ID = "tx_sapu_lobang_penanganan"
+const TITLE = "Sapu Lobang Penanganan"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `${process.env.BASE_URL}/assets/images/marker/sapulobang.png`
+const ICON = `${process.env.BASE_URL}/assets/images/marker/sapulobang_finish.png`
 
-export type IconSapuLobang = {
-    keterangan: string,
-    icon: string
-}
 
-const ICON_KEY = {
-    keterangan: "keterangan",
-    icon: "icon"
-}
-
-export type SapuLobang = {
+export type SapuLobangPenanganan = {
     tanggal: string,
     lat: number,
     long: number,
     uptd_id: string,
     icon: string,
     image : string,
+    image_penanganan : string,
     panjang : string,
     keterangan: string,
     kategori: string,
@@ -39,6 +31,7 @@ const KEY = {
     uptd_id : 'uptd_id',
     icon : 'icon',
     image : 'image',
+    image_penanganan : 'image_penanganan',
     panjang : 'panjang',
     description : 'description',
     kategori : 'kategori',
@@ -90,7 +83,7 @@ const popupTemplate : __esri.PopupTemplateProperties = {
             outFields: ["*"],
             creator: function(feature : any) {
                 var id = feature.graphic.attributes.id_pek;
-                const image = feature.graphic.attributes.image;
+                const image = feature.graphic.attributes.image_penanganan;
                 let html = '';
                 // if(isImage(image)){
                 //     html += `
@@ -106,8 +99,19 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                 </div>`;
             }
         }
-        
     ],
+}
+
+const symbol: __esri.PictureMarkerSymbolProperties = {
+    type: "picture-marker",
+    url: ICON,
+    width: "24px",
+    height: "24px"
+}
+
+const renderer: __esri.SimpleRendererProperties = {
+    type: "simple",
+    symbol: symbol
 }
 
 const fields: __esri.FieldProperties[] = [
@@ -157,40 +161,16 @@ const fields: __esri.FieldProperties[] = [
         name: "image",
         alias: "Image",
         type: "string"
+    },
+    {
+        name: "image_penanganan",
+        alias: "Image Penanganan",
+        type: "string"
     }
 ]
 
-const symbol: __esri.PictureMarkerSymbolProperties = {
-    type: "picture-marker",
-    url: ICON,
-    width: "24px",
-    height: "24px"
-}
-
-const renderer: __esri.SimpleRendererProperties = {
-    type: "simple",
-    symbol: symbol
-}
-// const renderer = (icons: IconSapuLobang[]) : __esri.UniqueValueRendererProperties => {
-//     const uniqueValueInfos : __esri.UniqueValueInfoProperties[] = icons.map((data) => ({
-//         value: data.keterangan,
-//         symbol: {
-//             type: "picture-marker",
-//             url: `${process.env.BASE_URL}/storage/${data.icon}`,
-//             width: "28px",
-//             height: "28px"
-//         } as __esri.PictureMarkerSymbolProperties
-//     }))
-
-//     return {
-//         type: "unique-value",
-//         field: KEY.keterangan,
-//         uniqueValueInfos: uniqueValueInfos
-//     }
-// }
-
-export const renderSapuLobang = (items: SapuLobang[], icons: IconSapuLobang[]) : __esri.FeatureLayerProperties => {
-
+export const renderSapuLobangPenanganan = (items: SapuLobangPenanganan[]) : __esri.FeatureLayerProperties => {
+    
     const graphics : __esri.GraphicProperties[] = items.map((item, index) => ({
         geometry: {
             type: "point",
@@ -200,7 +180,7 @@ export const renderSapuLobang = (items: SapuLobang[], icons: IconSapuLobang[]) :
         attributes: {
             ObjectID: index,
             ...item
-        } as SapuLobang & { [OBJECT_ID] : number }
+        } as SapuLobangPenanganan & { [OBJECT_ID] : number }
     }))
 
     return  {
@@ -209,13 +189,11 @@ export const renderSapuLobang = (items: SapuLobang[], icons: IconSapuLobang[]) :
         title: TITLE,
         id: LAYER_ID,
         outFields: ["*"],
-        fields: fields,
         geometryType: GEOM_TYPE,
+        fields: fields,
         popupTemplate: popupTemplate,
-        // renderer: renderer(icons),
         renderer: renderer,
         source: graphics,
         objectIdField: OBJECT_ID
     }
-    
 }

@@ -6,7 +6,9 @@ import { LaporanMasyarakat } from "../../utils/map_config/api/laporanmasyarakat"
 import { Pemeliharaan } from "../../utils/map_config/api/pemeliharaan"
 import { IconRawanBencana, RawanBencana } from "../../utils/map_config/api/rawanbencana"
 import { VehicleCounting } from "../../utils/map_config/api/vehiclecounting"
-import { IconSapuLobang, SapuLobang } from "../../utils/map_config/api/sapulobang"
+import { SapuLobang, IconSapuLobang } from "../../utils/map_config/api/sapulobang"
+import { SapuLobangPerencanaan } from "../../utils/map_config/api/sapulobang_perencanaan"
+import { SapuLobangPenanganan } from "../../utils/map_config/api/sapulobang_penanganan"
 
 
 
@@ -30,7 +32,8 @@ export type KegiatanResponseData = {
     laporanmasyarakat: LaporanMasyarakat[],
     sapulobang: SapuLobang[],
     iconsapulobang: IconSapuLobang[]
-
+    sapulobang_perencanaan: SapuLobangPerencanaan[],
+    sapulobang_penanganan: SapuLobangPenanganan[],
 
 }
 

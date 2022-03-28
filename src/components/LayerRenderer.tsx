@@ -20,6 +20,8 @@ import { renderLaporanMasyarakat } from "../utils/map_config/api/laporanmasyarak
 import { renderLaporanBencana } from "../utils/map_config/api/laporanbencana";
 import { renderRawanBencana } from "../utils/map_config/api/rawanbencana";
 import { renderSapuLobang } from "../utils/map_config/api/sapulobang";
+import { renderSapuLobangPerencanaan } from "../utils/map_config/api/sapulobang_perencanaan";
+import { renderSapuLobangPenanganan } from "../utils/map_config/api/sapulobang_penanganan";
 
 import { paketRuasConfig, paketTitikConfig } from "../utils/map_config/paket_pekerjaan";
 import { satuanPendidikanConfig } from "../utils/map_config/satuan_pendidikan";
@@ -103,7 +105,10 @@ const renderAPI : {[k: string] : (data: KegiatanResponseData) => __esri.LayerPro
     [KEGIATAN.LAPORAN_MASYARAKAT] : (data) => renderLaporanMasyarakat(data.laporanmasyarakat),
     [KEGIATAN.LAPORAN_BENCANA] : (data) => renderLaporanBencana(data.laporanbencana, data.iconlaporanbencana),
     [KEGIATAN.TITIK_RAWAN_BENCANA] : (data) => renderRawanBencana(data.rawanbencana, data.iconrawanbencana),
-    [KEGIATAN.SAPU_LOBANG] : (data) => renderSapuLobang(data.sapulobang, data.sapulobang),
+    [KEGIATAN.SAPU_LOBANG] : (data) => renderSapuLobang(data.sapulobang, data.iconsapulobang),
+    [KEGIATAN.SAPU_LOBANG_PERENCANAAN] : (data) => renderSapuLobangPerencanaan(data.sapulobang_perencanaan),
+    [KEGIATAN.SAPU_LOBANG_PENANGANAN] : (data) => renderSapuLobangPenanganan(data.sapulobang_penanganan)
+
 }
 
 const renderWMS : {[k: string] : (uptd: string[], sup: string[], tanggal: Tanggal) => __esri.LayerProperties} = {

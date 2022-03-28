@@ -1,17 +1,22 @@
-const LAYER_ID = "tx_sapu_lobang"
-const TITLE = "Sapu Lobang"
+const LAYER_ID = "tx_sapu_lobang_perencanaan"
+const TITLE = "Sapu Lobang Perencanaan"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `${process.env.BASE_URL}/assets/images/marker/sapulobang.png`
+const ICON = `${process.env.BASE_URL}/assets/images/marker/sapulobang_schedule.png`
 
 
-export type SapuLobang = {
+export type SapuLobangPerencanaan = {
     tanggal: string,
     lat: number,
     long: number,
     uptd_id: string,
     icon: string,
+    image : string,
+    panjang : string,
+    keterangan: string,
+    kategori: string,
+    description: string,
     created_at: string,
     created_by: number,
     updated_at: string,
@@ -24,6 +29,11 @@ const KEY = {
     long : 'long',
     uptd_id : 'uptd_id',
     icon : 'icon',
+    image : 'image',
+    panjang : 'panjang',
+    description : 'description',
+    kategori : 'kategori',
+    keterangan : 'keterangan',
     created_at : 'created_at',
     created_by : 'created_by',
     updated_at : 'updated_at',
@@ -40,6 +50,18 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                     label: "Tanggal"
                 },
                 {
+                    fieldName: "panjang",
+                    label: "Panjang (M)"
+                },
+                {
+                    fieldName: "kategori",
+                    label: "Kategori"
+                },
+                {
+                    fieldName: "description",
+                    label: "Keterangan"
+                },
+                {
                     fieldName: "lat",
                     label: "Latitude"
                 },
@@ -50,10 +72,6 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                 {
                     fieldName: "uptd_id",
                     label: "UPTD"
-                },
-                {
-                    fieldName: "icon",
-                    label: "Icon"
                 }
             ]
         },
@@ -63,8 +81,20 @@ const popupTemplate : __esri.PopupTemplateProperties = {
             outFields: ["*"],
             creator: function(feature : any) {
                 var id = feature.graphic.attributes.id_pek;
-                return `<a class="btn btn-primary text-white mb-4" href="#" target="_blank">
-                        Lihat Detail Pekerjaan</a>`;
+                const image = feature.graphic.attributes.image;
+                let html = '';
+                // if(isImage(image)){
+                //     html += `
+                //     <div class="esri-feature-media__item">
+                //         <img src="${process.env.BASE_URL}/storage/survei_lubang/${image}" alt="Failed to load" />
+                //     </div>`;
+                // }
+                
+                // return html;
+                return `
+                <div class="esri-feature-media__item">
+                    <img src="${process.env.BASE_URL}/storage/survei_lubang/${image}" alt="Failed to load" />
+                </div>`;
             }
         }
     ],
@@ -94,6 +124,23 @@ const fields: __esri.FieldProperties[] = [
         type: "string"
     },
     {
+        name: "panjang",
+        alias: "Panjang (M)",
+        type: "string"
+       
+    },
+    {
+        name: "kategori",
+        alias: "Kategori",
+        type: "string"
+    },
+    {
+        name: "description",
+        alias: "Keterangan",
+        type: "string"
+        
+    },
+    {
         name: "lat",
         alias: "Latitude",
         type: "double"
@@ -109,13 +156,13 @@ const fields: __esri.FieldProperties[] = [
         type: "string"
     },
     {
-        name: "icon",
-        alias: "Icon",
+        name: "image",
+        alias: "Image",
         type: "string"
     }
 ]
 
-export const renderSapuLobang = (items: SapuLobang[]) : __esri.FeatureLayerProperties => {
+export const renderSapuLobangPerencanaan = (items: SapuLobangPerencanaan[]) : __esri.FeatureLayerProperties => {
     
     const graphics : __esri.GraphicProperties[] = items.map((item, index) => ({
         geometry: {
@@ -126,7 +173,7 @@ export const renderSapuLobang = (items: SapuLobang[]) : __esri.FeatureLayerPrope
         attributes: {
             ObjectID: index,
             ...item
-        } as SapuLobang & { [OBJECT_ID] : number }
+        } as SapuLobangPerencanaan & { [OBJECT_ID] : number }
     }))
 
     return  {

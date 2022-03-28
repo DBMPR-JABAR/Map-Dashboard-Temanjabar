@@ -18,6 +18,8 @@ export const KEGIATAN = {
     KONDISI_JALAN: "kondisijalan",
     KONDISI_JALAN_TITIK: "kondisijalan_titik",
     SAPU_LOBANG:  "sapulobang",
+    SAPU_LOBANG_PERENCANAAN:  "sapulobang_perencanaan",
+    SAPU_LOBANG_PENANGANAN:  "sapulobang_penanganan",
 
     // --- Kebencanaan
     LAPORAN_BENCANA: "laporanbencana",
@@ -44,7 +46,10 @@ export const KEGIATAN = {
 export const HAS_TANGGAL = [
     KEGIATAN.PEMELIHARAAN,
     KEGIATAN.PEKERJAAN,
-    KEGIATAN.SAPU_LOBANG
+    KEGIATAN.SAPU_LOBANG,
+    KEGIATAN.SAPU_LOBANG_PERENCANAAN,
+    KEGIATAN.SAPU_LOBANG_PENANGANAN
+
 
 ]
 
@@ -56,7 +61,9 @@ export const NEED_API_REQUEST = [
     KEGIATAN.LAPORAN_BENCANA,
     KEGIATAN.LAPORAN_MASYARAKAT,
     KEGIATAN.VEHICLE_COUNTING,
-    KEGIATAN.SAPU_LOBANG
+    KEGIATAN.SAPU_LOBANG,
+    KEGIATAN.SAPU_LOBANG_PERENCANAAN,
+    KEGIATAN.SAPU_LOBANG_PENANGANAN
 ]
 
 export type Coordinate = {
