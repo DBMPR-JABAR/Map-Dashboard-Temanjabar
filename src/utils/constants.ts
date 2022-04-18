@@ -33,8 +33,11 @@ export const KEGIATAN = {
     PEKERJAAN: "pekerjaan",
     LAPORAN_MASYARAKAT: "laporanmasyarakat",
 
-    // --- Tata Ruang
+    // --- Ruang Milik Jalan
     RUMIJA: "rumija",
+    LAPOR_RUMIJA: "laporrumija",
+
+    // --- Tata Ruang
     CCTV: "cctv",
     VEHICLE_COUNTING: "vehiclecounting",
     SATUAN_PENDIDIKAN: "satuanpendidikan",
@@ -63,7 +66,9 @@ export const NEED_API_REQUEST = [
     KEGIATAN.VEHICLE_COUNTING,
     KEGIATAN.SAPU_LOBANG,
     KEGIATAN.SAPU_LOBANG_PERENCANAAN,
-    KEGIATAN.SAPU_LOBANG_PENANGANAN
+    KEGIATAN.SAPU_LOBANG_PENANGANAN,
+    KEGIATAN.LAPOR_RUMIJA
+
 ]
 
 export type Coordinate = {

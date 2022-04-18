@@ -9,6 +9,7 @@ import { VehicleCounting } from "../../utils/map_config/api/vehiclecounting"
 import { SapuLobang, IconSapuLobang } from "../../utils/map_config/api/sapulobang"
 import { SapuLobangPerencanaan } from "../../utils/map_config/api/sapulobang_perencanaan"
 import { SapuLobangPenanganan } from "../../utils/map_config/api/sapulobang_penanganan"
+import { LaporRumija } from "../../utils/map_config/api/lapor_rumija"
 
 
 
@@ -34,6 +35,7 @@ export type KegiatanResponseData = {
     iconsapulobang: IconSapuLobang[]
     sapulobang_perencanaan: SapuLobangPerencanaan[],
     sapulobang_penanganan: SapuLobangPenanganan[],
+    laporrumija: LaporRumija[],
 
 }
 

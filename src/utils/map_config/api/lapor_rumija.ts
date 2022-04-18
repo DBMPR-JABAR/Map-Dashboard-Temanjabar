@@ -1,23 +1,17 @@
-const LAYER_ID = "tx_sapu_lobang_penanganan"
-const TITLE = "Sapu Lobang Penanganan"
+const LAYER_ID = "tx_lapor_rumija"
+const TITLE = "Lapor Rumija"
 
 const GEOM_TYPE = "point"
 const OBJECT_ID = "ObjectID"
-const ICON = `${process.env.BASE_URL}/assets/images/marker/sapulobang_finish.png`
+const ICON = `${process.env.BASE_URL}/assets/images/marker/peningkatan.png`
 
 
-export type SapuLobangPenanganan = {
-    tanggal: string,
+export type LaporRumija = {
     lat: number,
     long: number,
     uptd_id: string,
-    icon: string,
     image : string,
-    image_penanganan : string,
-    panjang : string,
     keterangan: string,
-    kategori: string,
-    description: string,
     created_at: string,
     created_by: number,
     updated_at: string,
@@ -25,16 +19,10 @@ export type SapuLobangPenanganan = {
 }
 
 const KEY = {
-    tanggal : 'tanggal',
     lat : 'lat',
     long : 'long',
     uptd_id : 'uptd_id',
-    icon : 'icon',
     image : 'image',
-    image_penanganan : 'image_penanganan',
-    panjang : 'panjang',
-    description : 'description',
-    kategori : 'kategori',
     keterangan : 'keterangan',
     created_at : 'created_at',
     created_by : 'created_by',
@@ -48,20 +36,8 @@ const popupTemplate : __esri.PopupTemplateProperties = {
         {
             type: "fields",
             fieldInfos: [{
-                    fieldName: "tanggal",
+                    fieldName: "created_at",
                     label: "Tanggal"
-                },
-                {
-                    fieldName: "panjang",
-                    label: "Panjang (M)"
-                },
-                {
-                    fieldName: "kategori",
-                    label: "Kategori"
-                },
-                {
-                    fieldName: "description",
-                    label: "Keterangan"
                 },
                 {
                     fieldName: "lat",
@@ -74,6 +50,10 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                 {
                     fieldName: "uptd_id",
                     label: "UPTD"
+                },
+                {
+                    fieldName: "keterangan",
+                    label: "Keterangan"
                 }
             ]
         },
@@ -84,8 +64,6 @@ const popupTemplate : __esri.PopupTemplateProperties = {
             creator: function(feature : any) {
                 var id = feature.graphic.attributes.id_pek;
                 const image = feature.graphic.attributes.image;
-                const image_penanganan = feature.graphic.attributes.image_penanganan;
-
                 let html = '';
                 // if(isImage(image)){
                 //     html += `
@@ -95,26 +73,10 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                 // }
                 
                 // return html;
-                if (image_penanganan) {
-                    return `
-                    <div class="esri-feature-media__item">
-                        <div class="row">
-                            <div class="col-md-6">
-                                Kondisi Awal
-                                <img src="${process.env.BASE_URL}/storage/survei_lubang/${image}" alt="Failed to load" />
-                            </div>
-                            <div class="col-md-6">
-                                Kondisi Akhir
-                                <img src="${process.env.BASE_URL}/storage/survei_lubang/${image_penanganan}" alt="Failed to load" />
-                            </div>
-                        </div>
-                    </div>`;
-                  } else {
-                    return `
-                    <div class="esri-feature-media__item">
-                        <img src="${process.env.BASE_URL}/storage/survei_lubang/${image}" alt="Failed to load" />
-                    </div>`;
-                }
+                return `
+                <div class="esri-feature-media__item">
+                    <img src="${process.env.BASE_URL}/storage/laporan_rumija/${image}" alt="Failed to load" />
+                </div>`;
             }
         }
     ],
@@ -138,28 +100,7 @@ const fields: __esri.FieldProperties[] = [
         alias: OBJECT_ID,
         type: "oid"
     },
-    {
-        name: "tanggal",
-        alias: "Tanggal",
-        type: "string"
-    },
-    {
-        name: "panjang",
-        alias: "Panjang (M)",
-        type: "string"
-       
-    },
-    {
-        name: "kategori",
-        alias: "Kategori",
-        type: "string"
-    },
-    {
-        name: "description",
-        alias: "Keterangan",
-        type: "string"
-        
-    },
+
     {
         name: "lat",
         alias: "Latitude",
@@ -181,13 +122,13 @@ const fields: __esri.FieldProperties[] = [
         type: "string"
     },
     {
-        name: "image_penanganan",
-        alias: "Image Penanganan",
+        name: "keterangan",
+        alias: "Keterangan",
         type: "string"
     }
 ]
 
-export const renderSapuLobangPenanganan = (items: SapuLobangPenanganan[]) : __esri.FeatureLayerProperties => {
+export const renderLaporRumija = (items: LaporRumija[]) : __esri.FeatureLayerProperties => {
     
     const graphics : __esri.GraphicProperties[] = items.map((item, index) => ({
         geometry: {
@@ -198,7 +139,7 @@ export const renderSapuLobangPenanganan = (items: SapuLobangPenanganan[]) : __es
         attributes: {
             ObjectID: index,
             ...item
-        } as SapuLobangPenanganan & { [OBJECT_ID] : number }
+        } as LaporRumija & { [OBJECT_ID] : number }
     }))
 
     return  {

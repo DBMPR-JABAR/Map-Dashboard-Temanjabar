@@ -78,9 +78,15 @@ export const kegiatanOptions = () : GroupSelect[] => {
                     ]
                 },
                 {
+                    label: "Ruang Milik Jalan",
+                    options: [
+                        { value: KEGIATAN.RUMIJA, label: "Pemanfaatan"},
+                        { value: KEGIATAN.LAPOR_RUMIJA, label: "Pengaduan"},
+                    ]
+                },
+                {
                     label: "Tata Ruang",
                     options: [
-                        { value: KEGIATAN.RUMIJA, label: "Ruang Milik Jalan"},
                         { value: KEGIATAN.CCTV, label: "CCTV"},
                         { value: KEGIATAN.VEHICLE_COUNTING, label:  "Vehicle Counting"},
                     ]
