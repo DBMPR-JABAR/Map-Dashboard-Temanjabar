@@ -102,7 +102,9 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                 // return html;
                 return `
                 <div class="esri-feature-media__item">
-                    <img src="${process.env.BASE_URL}/storage/survei_lubang/${image}" alt="Failed to load" />
+                    
+                    <img src="${process.env.BASE_URL}/map-dashboard/intervention-mage/${image}" alt="Failed to load" />
+
                 </div>`;
             }
         }
