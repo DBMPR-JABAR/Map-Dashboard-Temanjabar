@@ -39,44 +39,44 @@ export const kegiatanOptions = () : GroupSelect[] => {
                     label: "Kondisi Jalan",
                     options: [
                         { value: KEGIATAN.RUAS_JALAN, label: "Ruas Jalan"},
-                        { value: KEGIATAN.KEMANTAPAN_JALAN, label:  "Survei Kondisi Kemantapan Jalan"},
-                        { value: KEGIATAN.KERUSAKAN_JALAN_TITIK, label:  "Kerusakan Jalan (Titik)"},
-                        { value: KEGIATAN.KONDISI_JALAN, label:  "Survei Kondisi Jalan dengan Roaddroid"},
-                        { value: KEGIATAN.KONDISI_JALAN_TITIK, label:  "Survei Kondisi Jalan (Titik Roaddroid)"},
+                        // { value: KEGIATAN.KEMANTAPAN_JALAN, label:  "Survei Kondisi Kemantapan Jalan"},
+                        // { value: KEGIATAN.KERUSAKAN_JALAN_TITIK, label:  "Kerusakan Jalan (Titik)"},
+                        // { value: KEGIATAN.KONDISI_JALAN, label:  "Survei Kondisi Jalan dengan Roaddroid"},
+                        // { value: KEGIATAN.KONDISI_JALAN_TITIK, label:  "Survei Kondisi Jalan (Titik Roaddroid)"},
                     ]
                 },
-                {
-                    label: "Sapu Lobang",
-                    options: [
-                        { value: KEGIATAN.SAPU_LOBANG, label:  "Data Survei"},
-                        { value: KEGIATAN.SAPU_LOBANG_PERENCANAAN, label:  "Perencanaan"},
-                        { value: KEGIATAN.SAPU_LOBANG_PENANGANAN, label:  "Penanganan"},
-                    ]
-                },
-                {
-                    label: "Integrasi BIM",
-                    options: [
-                        { value: KEGIATAN.LEGER, label: "Leger Jalan"}
-                    ]
-                },
-                {
-                    label: "Kebencanaan",
-                    options: [
-                        { value: KEGIATAN.LAPORAN_BENCANA, label: "Laporan Bencana"},
-                        { value: KEGIATAN.TITIK_RAWAN_BENCANA, label:  "Titik Rawan Bencana"},
-                        { value: KEGIATAN.AREA_RAWAN_BENCANA, label:  "Area Rawan Bencana"},
-                    ]
-                },
-                {
-                    label: "Proyek",
-                    options: [
-                        { value: KEGIATAN.BANKEU, label: "Bantuan Keuangan"},
-                        { value: KEGIATAN.JEMBATAN, label: "Jembatan"},
-                        { value: KEGIATAN.PEMELIHARAAN, label: "Pemeliharaan"},
-                        { value: KEGIATAN.PEKERJAAN, label:  "Paket Pekerjaan"},
-                        { value: KEGIATAN.LAPORAN_MASYARAKAT, label:  "Laporan Masyarakat"},
-                    ]
-                },
+                // {
+                //     label: "Sapu Lobang",
+                //     options: [
+                //         { value: KEGIATAN.SAPU_LOBANG, label:  "Data Survei"},
+                //         { value: KEGIATAN.SAPU_LOBANG_PERENCANAAN, label:  "Perencanaan"},
+                //         { value: KEGIATAN.SAPU_LOBANG_PENANGANAN, label:  "Penanganan"},
+                //     ]
+                // },
+                // {
+                //     label: "Integrasi BIM",
+                //     options: [
+                //         { value: KEGIATAN.LEGER, label: "Leger Jalan"}
+                //     ]
+                // },
+                // {
+                //     label: "Kebencanaan",
+                //     options: [
+                //         { value: KEGIATAN.LAPORAN_BENCANA, label: "Laporan Bencana"},
+                //         { value: KEGIATAN.TITIK_RAWAN_BENCANA, label:  "Titik Rawan Bencana"},
+                //         { value: KEGIATAN.AREA_RAWAN_BENCANA, label:  "Area Rawan Bencana"},
+                //     ]
+                // },
+                // {
+                //     label: "Proyek",
+                //     options: [
+                //         { value: KEGIATAN.BANKEU, label: "Bantuan Keuangan"},
+                //         { value: KEGIATAN.JEMBATAN, label: "Jembatan"},
+                //         { value: KEGIATAN.PEMELIHARAAN, label: "Pemeliharaan"},
+                //         { value: KEGIATAN.PEKERJAAN, label:  "Paket Pekerjaan"},
+                //         { value: KEGIATAN.LAPORAN_MASYARAKAT, label:  "Laporan Masyarakat"},
+                //     ]
+                // },
                 {
                     label: "Ruang Milik Jalan",
                     options: [
@@ -84,13 +84,13 @@ export const kegiatanOptions = () : GroupSelect[] => {
                         { value: KEGIATAN.LAPOR_RUMIJA, label: "Pengaduan"},
                     ]
                 },
-                {
-                    label: "Tata Ruang",
-                    options: [
-                        { value: KEGIATAN.CCTV, label: "CCTV"},
-                        { value: KEGIATAN.VEHICLE_COUNTING, label:  "Vehicle Counting"},
-                    ]
-                },
+                // {
+                //     label: "Tata Ruang",
+                //     options: [
+                //         { value: KEGIATAN.CCTV, label: "CCTV"},
+                //         { value: KEGIATAN.VEHICLE_COUNTING, label:  "Vehicle Counting"},
+                //     ]
+                // },
             ]
             break
         default:
