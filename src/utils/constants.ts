@@ -31,7 +31,6 @@ export const KEGIATAN = {
   JEMBATAN: "jembatan",
   PEMELIHARAAN: "pemeliharaan",
   PEKERJAAN: "pekerjaan",
-  LAPORAN_MASYARAKAT: "laporanmasyarakat",
   PAKET_PEKERJAAN: "pembangunan",
 
   // --- Ruang Milik Jalan
@@ -45,6 +44,12 @@ export const KEGIATAN = {
 
   // --- BIM
   LEGER: "leger",
+
+  // --- Masyarakat
+  LAPORAN_MASYARAKAT: "laporanmasyarakat",
+  AREA_PENGADUAN_MASYARAKAT: "areapengaduanmasyarakat",
+
+
 };
 
 export const HAS_TANGGAL = [

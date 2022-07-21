@@ -85,7 +85,6 @@ export const kegiatanOptions = (): GroupSelect[] => {
             { value: KEGIATAN.JEMBATAN, label: "Jembatan" },
             { value: KEGIATAN.PEMELIHARAAN, label: "Pemeliharaan" },
             { value: KEGIATAN.PAKET_PEKERJAAN, label: "Paket Pekerjaan" },
-            { value: KEGIATAN.LAPORAN_MASYARAKAT, label: "Laporan Masyarakat" },
           ],
         },
         {
@@ -100,6 +99,14 @@ export const kegiatanOptions = (): GroupSelect[] => {
           options: [
             { value: KEGIATAN.CCTV, label: "CCTV" },
             { value: KEGIATAN.VEHICLE_COUNTING, label: "Vehicle Counting" },
+          ],
+        },
+        {
+          label: "Masyarakat",
+          options: [
+            { value: KEGIATAN.LAPORAN_MASYARAKAT, label: "Titik Pengaduan" },
+            { value: KEGIATAN.AREA_PENGADUAN_MASYARAKAT, label: "Area Pengaduan" },
+
           ],
         },
       ];

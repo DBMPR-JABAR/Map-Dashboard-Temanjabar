@@ -1,4 +1,5 @@
-const PATH = "https://satupeta.jabarprov.go.id/arcgis/rest/services/SATUPETA_BPBD/Kebencanaan/MapServer/1"
+// const PATH = "https://satupeta.jabarprov.go.id/arcgis/rest/services/SATUPETA_BPBD/Kebencanaan/MapServer/1"
+const PATH = "https://arcgis.jabarprov.go.id/arcgis/rest/services/perangkat_daerah/BPBD/MapServer/2"
 const LAYER_ID = "rgtId"
 const TITLE = "Rawan Gempa Bumi"
 

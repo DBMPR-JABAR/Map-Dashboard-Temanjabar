@@ -1,4 +1,7 @@
-const PATH = "https://satupeta.jabarprov.go.id/arcgis/rest/services/SATUPETA_BPBD/Kebencanaan/MapServer/7"
+// const PATH = "https://satupeta.jabarprov.go.id/arcgis/rest/services/SATUPETA_BPBD/Kebencanaan/MapServer/7"
+const PATH = "https://arcgis.jabarprov.go.id/arcgis/rest/services/perangkat_daerah/BPBD/MapServer/8"
+
+
 const LAYER_ID = "irbId"
 const TITLE = "Indeks Resiko Banjir"
 

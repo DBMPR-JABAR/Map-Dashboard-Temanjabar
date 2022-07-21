@@ -1,4 +1,4 @@
-const PATH = "https://satupeta.jabarprov.go.id/arcgis/rest/services/SATUPETA_BPBD/Kebencanaan/MapServer/9"
+const PATH = "https://arcgis.jabarprov.go.id/arcgis/rest/services/perangkat_daerah/BPBD/MapServer/10"
 const LAYER_ID = "longsorId"
 const TITLE = "Rawan Longsor"
 

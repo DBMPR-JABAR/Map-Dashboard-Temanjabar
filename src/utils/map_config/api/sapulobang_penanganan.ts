@@ -101,14 +101,14 @@ const popupTemplate : __esri.PopupTemplateProperties = {
                         <div class="row">
                             <div class="col-md-6">
                                 Kondisi Awal
-                                <img src="${process.env.BASE_URL}/storage/survei_lubang/${image}" alt="Failed to load" />
+                           
                                 <img src="${process.env.BASE_URL}/map-dashboard/intervention-mage/${image}" alt="Failed to load" />
 
                             
                             </div>
                             <div class="col-md-6">
                                 Kondisi Akhir
-                                <img src="${process.env.BASE_URL}/storage/survei_lubang/${image_penanganan}" alt="Failed to load" />
+                                
                                 <img src="${process.env.BASE_URL}/map-dashboard/intervention-mage/${image_penanganan}" alt="Failed to load" />
 
                             </div>

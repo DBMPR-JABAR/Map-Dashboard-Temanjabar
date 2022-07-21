@@ -8,6 +8,8 @@ import * as _ from "lodash";
 import { ruasJalanLayerConfig } from "../utils/map_config/jalan";
 import { jalanProvinsiConfig } from "../utils/map_config/jalan/jalan_provinsi";
 import { rawanBencanaConfig } from "../utils/map_config/rawan_bencana";
+import { areaPengaduanMasyarakatConfig } from "../utils/map_config/area_pengaduan_masyarakat";
+
 import { kemantapanJalanConfig } from "../utils/map_config/kemantapan_jalan";
 import { surveiRoaddroidRuasConfig } from "../utils/map_config/survei_roaddroid_ruas";
 import { surveiRoaddroidTitikConfig } from "../utils/map_config/survei_roaddroid_titik";
@@ -38,6 +40,7 @@ import { buildLeger } from "../utils/map_config/bim/leger";
 import { kerusakanTitikConfig } from "../utils/map_config/kerusakantitik";
 import { kemantapanJalanMasyarakatConfig } from "../utils/map_config/kemantapan_jalan_masyarakat";
 import { renderPaketPekerjaan } from "../utils/map_config/api/PaketPekerjaan";
+import { pengaduanMasyarakatConfig } from "../utils/map_config/area_pengaduan_masyarakat/pengaduan_masyarakat";
 
 export type RendererProps = {
   map: __esri.Map | null;
@@ -162,6 +165,18 @@ const renderWMS: {
   },
   [KEGIATAN.AREA_RAWAN_BENCANA]: () => {
     return rawanBencanaConfig;
+  },
+  [KEGIATAN.AREA_PENGADUAN_MASYARAKAT]: (uptd) => {
+    const uptdNum = _.join(
+      _.map(uptd, (value) => value.charAt(4)),
+      ","
+    );
+    let query = !_.isEmpty(uptd) ? `uptd IN (${uptdNum})` : "";
+    pengaduanMasyarakatConfig.definitionExpression = query;
+    if (areaPengaduanMasyarakatConfig.layers?.indexOf(pengaduanMasyarakatConfig) === -1) {
+      areaPengaduanMasyarakatConfig.layers?.push(pengaduanMasyarakatConfig);
+    }
+    return areaPengaduanMasyarakatConfig;
   },
   [KEGIATAN.KEMANTAPAN_JALAN]: (uptd) => {
     const uptdNum = _.join(
